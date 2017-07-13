@@ -7,6 +7,9 @@
 {{> header_style}}
 {{> left_style}}
 {{> style}}
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>		
+
 </head>
 <body>
 
@@ -21,4 +24,27 @@
 		{{/posts}}
 	</div>
 </body>
+
+<script>
+
+$(function(){
+
+	$('#left .main_menu').on('click', function(){
+		
+		if($(this).next('.sub_menu').hasClass('left_menu_show')){
+			$(this).next('.sub_menu').slideUp("normal",function(){
+				$(this).removeClass('left_menu_show').addClass('left_menu_hide')
+		    });	
+		} else {	
+			$(this).next('.sub_menu').slideDown("normal",function(){
+				$(this).removeClass('left_menu_hide').addClass('left_menu_show')
+		    });		
+		}
+	})
+
+
+})
+
+</script>
+
 </html>
