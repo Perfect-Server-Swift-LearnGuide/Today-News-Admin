@@ -35,6 +35,9 @@ public struct Server {
         /// t添加响应过滤器
         server.setResponseFilters(responseFilters)
         
+        /// 设置文档根目录
+        server.documentRoot = "./webroot"
+        
         /// 创建路由
         let routes = Route().routes
         
@@ -43,9 +46,6 @@ public struct Server {
         
         /// 监听端口
         server.serverPort = 8181
-        
-        /// 设置文档根目录
-        server.documentRoot = "./webroot"
 
     }
 

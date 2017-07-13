@@ -7,27 +7,47 @@
 //
 
 import PerfectHTTP
+import PerfectMustache
 
 /// Handler
 public enum HandlerType {
-    /// 获取文章分类
-    case articleCategory
-    /// 获取不同分类新闻内容
-    case articleContent
+    /// 首页
+    case index
+    
 }
 
 public struct Handler {
     
     /// 路由处理句柄
-    public var handler: RequestHandler?
+    public var handler: MustachePageHandler?
+    
+    /// Handler Type
+    public var type: HandlerType?
+    
+    ///  template
+    public var template: String {
+        get{
+            guard let type = self.type else {
+                return "/.mustache"
+            }
+            return "/\(type).mustache"
+        }
+    }
+    
     
     public init() {
         
     }
     
-    public init(handler: HandlerType) {
+    public init(type: HandlerType) {
+        self.type = type
         
-              
+        switch type {
+        case .index:
+            self.handler = IndexHandler()
+            
+        }
+
     }
 
 }
