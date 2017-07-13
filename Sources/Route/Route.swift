@@ -19,11 +19,23 @@ public struct Route {
 
         /// Index
         let index = Handler(type: .index)
-        
-        var routes = Routes()
+        /// AddArticle
+        let addArticle = Handler(type: .add_article)
+        /// Delete
+        let deleteArticle = Handler(type: .delete_article)
+        /// Look
+        let lookArticle = Handler(type: .look_article)
         
         /// 设置路由
+        var routes = Routes()
+        
         routes.add(method: .get, uri: "/", handler: handler(handler: index))
+        routes.add(method: .get, uri: "/add_article", handler: handler(handler: addArticle))
+        routes.add(method: .get, uri: "/delete_article", handler: handler(handler: deleteArticle))
+        routes.add(method: .get, uri: "/look_article", handler: handler(handler: lookArticle))
+        
+        /// 设置动作
+        routes.add(method: .get, uri: "/add_article_action", handler: Handler(action:.add_article).action!)
         
         /// 注册到服务器主路由表上
         self.routes.add(routes)
@@ -32,6 +44,7 @@ public struct Route {
     /// generate requestHandler
     private func handler(handler: Handler) -> RequestHandler {
         return { request, response in
+                        
             response.setHeader(.contentType, value: "text/html")
             mustacheRequest(
                 request: request,

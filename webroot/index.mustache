@@ -3,32 +3,33 @@
 <meta charset="utf-8">
 
 <title>Today News Admin</title>
+	<!-- 全局样式 -->	
+	{{> style}}
+	<!-- 头部样式 -->
+	{{> header_style}}
+	<!-- 左侧菜单样式 -->
+	{{> left_style}}
+	<!-- 右侧内容样式 -->
+	{{> content_style}}
 
-{{> header_style}}
-{{> left_style}}
-{{> style}}
-
-<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>		
+<script type="text/javascript" src="js/lib/jquery-1.11.3.min.js"></script>		
 
 </head>
 <body>
 
+	<!-- 头部 -->
 	{{> header}}
+	<!-- 左边菜单 -->
 	{{> left}}
-	<div id="content">
-		{{#posts}}
-		<div style="padding-bottom: 20px; border-bottom: 1px solid black">
-			<h4><a href="/story/{{titlesanitized}}">{{title}}</a></h4>
-			<div>{{synopsis}}</div>
-		</div>
-		{{/posts}}
-	</div>
+	<!-- 右边内容 -->
+	{{> content}}  
+
 </body>
 
 <script>
 
 $(function(){
-console.log(JSON.stringify([1, "false", false]));
+
 	$('#left .main_menu').on('click', function(){
 		
 		if($(this).next('.sub_menu').hasClass('left_menu_show')){
