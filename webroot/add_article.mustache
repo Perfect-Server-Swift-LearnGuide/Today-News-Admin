@@ -1,3 +1,7 @@
+
+<!-- 右侧添加文章样式 -->
+{{> add_style}}
+
 <div id='add_article'>
 	<h1>添加文章</h1>
 
@@ -22,15 +26,18 @@ $(function(){
 	$('#submit_btn').on('click', function(){
 
 		var data = $('#add_article_form').serialize()
-		console.log(data)
-
+		
 		$.ajax( {  
 			url:'/add_article_action',
 			data:data,  
 			type:'get',  
 			dataType:'json',  
-			success:function(data) {  
-				console.log(data)
+			success:function(data) {
+				if (data.result == 'success') {
+					alert('添加成功')
+				} else {
+					alert('添加失败')
+				}
 			},  
 			error:function() {  
 				alert("异常！");  

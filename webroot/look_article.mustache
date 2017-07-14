@@ -1,3 +1,28 @@
-<div>
+
+<!-- 查看文章样式 -->	
+{{> look_style}}
+
+<div id="look_article">
 	<h1>查看文章</h1>
+
+	<div id="look_container">
+		<table>
+	
+			<tr>
+				<th style="width: 15%">创建时间</th>
+				<th style="width: 25%">文章标题</th>
+				<th style="width: 50%">文章内容</th>
+				<th style="width: 10%">操作</th>
+			</tr>
+			{{#articles}}
+				<tr>
+					<td>{{createtime}}</td>
+					<td>{{title}}</td>
+					<td>{{content}}</td>
+					<td><span>查看详情</span></td>
+				</tr>
+			{{/articles}}
+		</table>
+	</div>
+
 <div>
