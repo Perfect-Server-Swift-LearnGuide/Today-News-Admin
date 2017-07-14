@@ -6,9 +6,10 @@ let package = Package(
 
         Target(name: "Application", dependencies: ["Server"]),
         Target(name: "Common", dependencies: []),
-        Target(name: "Server", dependencies: ["Route"]),
-        Target(name: "Handler", dependencies: ["Common"]),
-        Target(name: "Route", dependencies: ["Handler", "Common"])
+        Target(name: "DataBase", dependencies: []),
+        Target(name: "Server", dependencies: ["Route", "DataBase"]),
+        Target(name: "Handler", dependencies: ["Common", "DataBase"]),
+        Target(name: "Route", dependencies: ["Handler", "Common", "DataBase"])
     ],
 	dependencies: [
         .Package(

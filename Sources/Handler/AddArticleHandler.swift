@@ -9,6 +9,8 @@
 import PerfectLib
 import PerfectHTTP
 import PerfectMustache
+import MongoDB
+import DataBase
 
 public struct AddArticleHandler: MustachePageHandler {
     
@@ -16,12 +18,14 @@ public struct AddArticleHandler: MustachePageHandler {
     public func addArticle() -> RequestHandler {
         return { request, response in
             
-            let params = request.params()
-            var paramsStr = ""
-            for param in params {
-                paramsStr.append("key:  \(param.0)  =====   " + "value:  \(param.1)  ")
+            var data = [String : Any]()
+            for param in request.params() {
+                data[param.0] = param.1
             }
-            response.appendBody(string: paramsStr)
+            
+            data["createtime"] = try! formatDate(getNow(), format: "%Y/%m/%d %I:%M:%S")
+            let db = DB(db: "today_news").collection(name: "article")
+            response.appendBody(string: db.save(data: data))
             
             response.completed()
         }

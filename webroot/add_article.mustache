@@ -1,16 +1,41 @@
 <div id='add_article'>
 	<h1>添加文章</h1>
 
-	<form>
+	<form id='add_article_form'>
 		<div id='article_title'>
 			<span>文章标题: </span>
-			<input type="text" placeholder="请输入文章标题"></input>
+			<input type="text" name="title" placeholder="请输入文章标题"></input>
 		</div>
 		<div id='article_content'>
 			<span>文章内容: </span>
-			<textarea rows="6" cols="20">在w3school，你可以找到你所需要的所有的网站建设教程。
-			</textarea>
+			<textarea name="content" rows="6" cols="20" placeholder='请输入文章内容'></textarea>
+		</div>
+		<div id='submit'>
+			<p id='submit_btn'>提交<p>
 		</div>
 	</form>
-
 <div>
+
+<script>
+
+$(function(){
+	$('#submit_btn').on('click', function(){
+
+		var data = $('#add_article_form').serialize()
+		console.log(data)
+
+		$.ajax( {  
+			url:'/add_article_action',
+			data:data,  
+			type:'get',  
+			dataType:'json',  
+			success:function(data) {  
+				console.log(data)
+			},  
+			error:function() {  
+				alert("异常！");  
+			}  
+		});
+	})
+})
+</script>
