@@ -23,6 +23,9 @@ public enum HandlerType {
     /// 查看文章
     case look_article
     
+    /// 文章详情
+    case detail_article
+    
 }
 
 /// Action
@@ -96,6 +99,9 @@ public struct Handler {
             
         case .look_article:
             self.handler = LookArticleHandler()
+          
+        case .detail_article:
+            self.handler = DetailArticleHandler()
         }
 
     }

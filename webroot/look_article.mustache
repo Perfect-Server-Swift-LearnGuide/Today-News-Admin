@@ -7,7 +7,6 @@
 
 	<div id="look_container">
 		<table>
-	
 			<tr>
 				<th style="width: 15%">创建时间</th>
 				<th style="width: 25%">文章标题</th>
@@ -19,10 +18,24 @@
 					<td>{{createtime}}</td>
 					<td>{{title}}</td>
 					<td>{{content}}</td>
-					<td><span>查看详情</span></td>
+					<td><span id="look" jump="/detail_article/{{id}}">查看</span>&nbsp;&nbsp;<span id="edit">编辑</span></td>
 				</tr>
 			{{/articles}}
 		</table>
 	</div>
 
 <div>
+
+<script>
+$(function(){
+	// 查看
+	$("#look_container #look").on('click', function(){
+		// alert('查看')
+		$("#index_content").load($(this).attr('jump'));
+	})
+	// 编辑
+	$("#look_container #edit").on('click', function(){
+
+	})
+})
+</script>
