@@ -31,10 +31,7 @@ public struct Route {
         /// 设置路由
         var routes = Routes()
         
-        routes.add(method: .get, uri: "**", handler: {request, response in
-            print("request  \(request.header(HTTPRequestHeader.Name.accept))")
-            response.completed()
-        })
+
         routes.add(method: .get, uri: "/", handler: handler(handler: index))
         routes.add(method: .get, uri: "/add_article", handler: handler(handler: addArticle))
         routes.add(method: .get, uri: "/delete_article", handler: handler(handler: deleteArticle))
@@ -43,10 +40,33 @@ public struct Route {
         
         /// 设置动作
         routes.add(method: .get, uri: "/add_article_action", handler: Handler(action:.add_article).action!)
-        
+        routes.add(method: .get, uri: "/themes/**", handler: {request, response in
+            response.addHeader(.contentType, value: "text/css; charset=\"utf-8\"")
+            // 获得符合通配符的请求路径
+            request.path = request.urlVariables[routeTrailingWildcardKey]!
+            // 用文档根目录初始化静态文件句柄
+            let handler = StaticFileHandler(documentRoot: request.documentRoot + "/themes")
+            // 用我们的根目录和路径
+            // 修改集触发请求的句柄
+            handler.handleRequest(request: request, response: response)
+            response.completed()
+        })
+        routes.add(method: .get, uri: "/third-party/**", handler: {request, response in
+            response.addHeader(.contentType, value: "text/css; charset=\"utf-8\"")
+            // 获得符合通配符的请求路径
+            request.path = request.urlVariables[routeTrailingWildcardKey]!
+            // 用文档根目录初始化静态文件句柄
+            let handler = StaticFileHandler(documentRoot: request.documentRoot + "/third-party")
+            // 用我们的根目录和路径
+            // 修改集触发请求的句柄
+            handler.handleRequest(request: request, response: response)
+            response.completed()
+        })
+
         /// 注册到服务器主路由表上
         self.routes.add(routes)
     }
+    
 
     
     /// generate requestHandler

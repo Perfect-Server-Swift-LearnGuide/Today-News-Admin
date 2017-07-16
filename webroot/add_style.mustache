@@ -5,37 +5,45 @@
     // background-color: red;
     height: 100%;
 }
+
+#add_article_form {
+    height: 100%;
+}
+
 #article_title {
     margin: 0 auto;
-    width: 500px;
+    width: 800px;
     height: 40px;
+    // background-color: red;
 }
-#article_content {
-    margin: 0 auto;
-    margin-top: 10px;
-    width: 500px;
-    height: 100px; 
+
+#article_title span {
+    height: 100%;
+    display: inline-block;
 }
 #article_title input {
     height: 40px;
-    width: 380px;
+    width: 440px;
     padding-left: 6px;
     font-size: 14px;
     border: 1px solid #ddd;
     margin-left: 5px;
 }
-#article_title span {
-    height: 100%;
-    display: inline-block;
+#article_content {
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 800px;
+    height: 400px; 
+    // background-color: green;
 }
-#article_content textarea {
+
+#article_content #editer {
+    // background-color: red;
     margin-left: 10px;
     border: 1px solid #ddd;
     display: inline-block;
-    height: 100%;
-    padding-left: 6px;
-    font-size: 14px;
-    width: 380px;
+    height: 98%;
+    width: 640px;
 }
 #article_content span {
     // background-color: orange;
@@ -43,7 +51,13 @@
     float: left;
     line-height: 100px;
 }
-
+// .clear{ clear: both} 
+#article_content #editer #container {
+    display: inline-block;
+    // margin: 0 auto;
+    // float: left;
+    // margin-left: 5px;
+}
 #submit {
     margin: 0 auto;
     margin-top: 30px;

@@ -41,7 +41,6 @@ public class LookArticleModel {
             thisPost["createtime"] = data["createtime"] as? String
             thisPost["title"] = data["title"] as? String
             thisPost["content"] = data["content"] as? String
-            
             ary.append(thisPost)
         }
         return ary

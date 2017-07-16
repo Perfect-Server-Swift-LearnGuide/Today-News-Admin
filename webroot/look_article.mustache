@@ -28,6 +28,11 @@
 
 <script>
 $(function(){
+	// console.log($("#look_container tr:gt(0) td:nth-child(3)"))
+	$.each($("#look_container tr:gt(0) td:nth-child(3)"), function(){
+		$(this).html($(this).text())
+	})
+
 	// 查看
 	$("#look_container #look").on('click', function(){
 		// alert('查看')

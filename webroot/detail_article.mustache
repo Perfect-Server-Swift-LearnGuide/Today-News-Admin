@@ -9,13 +9,15 @@
 			<td style="width:70%;"><span>文章标题: </span>{{title}}</td>
 			<td sytle="width:30%;"><span>创建时间: </span>{{createtime}}</td>
 		</tr>
-		<tr style="height: 400px;"><td colspan="2" valign="top" style="text-align:left;"><div id="content">{{content}}</div></td></tr>
+		<tr style="height: 400px;"><td colspan="2" valign="top" style="text-align:left;">
+			<div id="content">{{content}}</div></td>
+		</tr>
 	</table>
 <div>
 
 <script>
 
 $(function(){
-	
+	$("#detail_article #content").html($("#detail_article #content").text())
 })
 </script>

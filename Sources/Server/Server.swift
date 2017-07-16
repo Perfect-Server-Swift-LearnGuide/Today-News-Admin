@@ -14,7 +14,7 @@ import Route
 struct ResponseFilter: HTTPResponseFilter {
     func filterHeaders(response: HTTPResponse, callback: (HTTPResponseFilterResult) -> ()) {
         /// 设置响应头
-        response.setHeader(.contentType, value: "text/html")
+        response.addHeader(.contentType, value: "text/html")
         callback(.done)
     }
     func filterBody(response: HTTPResponse, callback: (HTTPResponseFilterResult) -> ()) {
