@@ -1,3 +1,86 @@
+
+<!-- 删除文章样式 -->	
+{{> delete_style}}
+
 <div>
 	<h1>删除文章</h1>
+	<div style="vertical-align:middle;background-color:#f5f5f5;height:40px;display:inline-block;margin:0 auto 20px;width:98%;">
+		<span style="float:right;line-height:40px;margin-right:6px;width:100px;height:40px;">共有数据: {{total}}</span>
+		<p id="delete_btn">批量删除</p>
+	</div>
+	<div id="look_container">
+		<table>
+			<tr>
+				<th style="width: 4%"><input id="all_delete_select" class="delete_select" type="checkbox"></input></th>
+				<th style="width: 11%">创建时间</th>
+				<th style="width: 25%">文章标题</th>
+				<th style="width: 50%">文章内容</th>
+				<th style="width: 10%">操作</th>
+			</tr>
+			{{#articles}}
+				<tr>
+					<td><div><input class="delete_select" type="checkbox" delete={{id}}></input></div></td>
+					<td><div style="font-size:12px;">{{createtime}}</div></td>
+					<td><div>{{title}}</div></td>
+					<td><div>{{content}}</div></td>
+					<td><span id="look" jump="/detail_article/{{id}}">查看</span>&nbsp;&nbsp;<span id="edit">编辑</span></td>
+				</tr>
+			{{/articles}}
+		</table>
+	</div>
+
 <div>
+
+<script>
+$(function(){
+
+	// 批量删除
+	$("#delete_btn").on('click', function(){
+
+		// console.log($('.delete_select:checked'));
+
+		var datas = []
+		$.each($('.delete_select:checked'),function(k,v){
+			datas[k] = $(this).attr("delete")
+		})
+		console.log(datas)
+
+		$.ajax( {  
+			url:'/delete_article_action',
+			data:{"delets":datas},  
+			type:'post',  
+			dataType:'json',  
+			success:function(data) {
+				if (data.result == 'success') {
+					alert('删除成功')
+					$("#index_content").load("/delete_article");
+				} else {
+					alert('删除失败')
+				}
+			},  
+			error:function() {  
+				alert("异常！");  
+			}  
+		});
+	})
+
+	$.each($("#look_container tr:gt(0) td:nth-child(4) div"), function(){
+		$(this).html($(this).text())
+	})
+
+	// 选中
+	$("#all_delete_select").on('click',function(){
+		console.log($(this).prop('checked'))
+		$('.delete_select').prop('checked',$(this).prop('checked'));
+	})
+	// 查看
+	$("#look_container #look").on('click', function(){
+		// alert('查看')
+		$("#index_content").load($(this).attr('jump'));
+	})
+	// 编辑
+	$("#look_container #edit").on('click', function(){
+
+	})
+})
+</script>

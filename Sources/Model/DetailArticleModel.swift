@@ -29,7 +29,12 @@ public class DetailArticleModel {
         while let c = cursor?.next() {
             
             let data = dictWithJSON(bson: c) as! [String : Any]
-            values["id"] = data["_id"] as? String
+            let temp = data["_id"] as? [String : String]
+            if let dict = temp {
+                values["id"] = dict["$oid"]
+            } else {
+                values["id"] = ""
+            }
             values["createtime"] = data["createtime"] as? String
             values["title"] = data["title"] as? String
             values["content"] = data["content"] as? String

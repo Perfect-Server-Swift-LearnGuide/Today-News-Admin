@@ -26,6 +26,9 @@ public enum HandlerType {
     /// 文章详情
     case detail_article
     
+    /// 编辑文章
+    case edit_article
+    
 }
 
 /// Action
@@ -41,6 +44,9 @@ public enum ActionType {
     
     /// 查看文章
     case look_article
+    
+    /// 编辑文章
+    case edit_article
     
 }
 
@@ -76,7 +82,13 @@ public struct Handler {
             
         case .add_article:
             self.action = AddArticleHandler().addArticle()
-
+            
+        case .delete_article:
+            self.action = DeleteArticleHandler().deleteArticle()
+            
+        case .edit_article:
+            self.action = EditArticleHandler().editArticle()
+            
         default:
             print("---")
         }
@@ -102,6 +114,9 @@ public struct Handler {
           
         case .detail_article:
             self.handler = DetailArticleHandler()
+            
+        case .edit_article:
+            self.handler = EditArticleHandler()
         }
 
     }

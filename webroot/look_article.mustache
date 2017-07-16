@@ -15,10 +15,10 @@
 			</tr>
 			{{#articles}}
 				<tr>
-					<td>{{createtime}}</td>
-					<td>{{title}}</td>
-					<td>{{content}}</td>
-					<td><span id="look" jump="/detail_article/{{id}}">查看</span>&nbsp;&nbsp;<span id="edit">编辑</span></td>
+					<td><div style="font-size:12px;">{{createtime}}</div></td>
+					<td><div>{{title}}</div></td>
+					<td><div>{{content}}</div></td>
+					<td><span id="look" jump="/detail_article/{{id}}">查看</span>&nbsp;&nbsp;<span id="edit" jump="/edit_article/{{id}}">编辑</span></td>
 				</tr>
 			{{/articles}}
 		</table>
@@ -29,7 +29,7 @@
 <script>
 $(function(){
 	// console.log($("#look_container tr:gt(0) td:nth-child(3)"))
-	$.each($("#look_container tr:gt(0) td:nth-child(3)"), function(){
+	$.each($("#look_container tr:gt(0) td:nth-child(3) div"), function(){
 		$(this).html($(this).text())
 	})
 
@@ -40,7 +40,7 @@ $(function(){
 	})
 	// 编辑
 	$("#look_container #edit").on('click', function(){
-
+		$("#index_content").load($(this).attr('jump'));
 	})
 })
 </script>

@@ -27,6 +27,9 @@ public struct Route {
         let lookArticle = Handler(type: .look_article)
         /// Detail
         let detailArticle = Handler(type: .detail_article)
+        /// Edit
+        let editArticle = Handler(type: .edit_article)
+        
         
         /// 设置路由
         var routes = Routes()
@@ -37,9 +40,14 @@ public struct Route {
         routes.add(method: .get, uri: "/delete_article", handler: handler(handler: deleteArticle))
         routes.add(method: .get, uri: "/look_article", handler: handler(handler: lookArticle))
         routes.add(method: .get, uri: "/detail_article/{id}", handler: handler(handler: detailArticle))
+        routes.add(method: .get, uri: "/edit_article/{id}", handler: handler(handler: editArticle))
         
         /// 设置动作
-        routes.add(method: .get, uri: "/add_article_action", handler: Handler(action:.add_article).action!)
+        routes.add(method: .post, uri: "/add_article_action", handler: Handler(action:.add_article).action!)
+        routes.add(method: .post, uri: "/delete_article_action", handler: Handler(action:.delete_article).action!)
+        routes.add(method: .post, uri: "/edit_article_action", handler: Handler(action:.edit_article).action!)
+        
+        /// 处理静态文件
         routes.add(method: .get, uri: "/themes/**", handler: {request, response in
             response.addHeader(.contentType, value: "text/css; charset=\"utf-8\"")
             // 获得符合通配符的请求路径

@@ -10,9 +10,43 @@ import DataBase
 import MongoDB
 import PerfectLib
 
-public class LookArticleModel {
+public class DeleteArticleModel {
 
+    public var total = 0
+    
     public init() {
+        
+    }
+    
+    /// 删除文章
+    public func deletes(_ deletes: [String]) -> String {
+        let db = DB(db: "today_news").collection(name: "article")
+        let collection: MongoCollection? = db.collection
+
+        var updates: [(selector: BSON, update: BSON)] = []
+        for id in deletes {
+                let oldBson = BSON()
+                  oldBson.append(key: "_id", oid: BSON.OID(id))
+                let innerBson = BSON()
+                 innerBson.append(key: "isDelete", string: "true")
+                 let newdBson = BSON()
+                 newdBson.append(key: "$set", document: innerBson)
+                 updates.append((selector: oldBson, update: newdBson))
+        }
+        
+        let result:MongoResult = collection!.update(updates: updates)
+        
+        var response = [String:Any]()
+        switch result {
+        case .success:
+            response["result"] = "success"
+        default:
+            response["result"] = "error"
+        }
+        
+        db.close()
+        
+        return try! response.jsonEncodedString()
         
     }
     
@@ -29,7 +63,7 @@ public class LookArticleModel {
         let cursor = collection?.find(query: queryBson)
         
         while let c = cursor?.next() {
-            
+            total += 1
             let data = dictWithJSON(bson: c) as! [String : Any]
 
             var thisPost = [String:String]()

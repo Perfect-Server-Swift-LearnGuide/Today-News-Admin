@@ -1,5 +1,5 @@
 
-<!-- 右侧添加文章样式 -->
+<!-- 右侧编辑文章样式 -->
 {{> add_style}}
 
 
@@ -14,12 +14,13 @@
 
 
 <div id='add_article'>
-	<h1>添加文章</h1>
+	<h1>修改文章</h1>
 
 	<form id='add_article_form'>
+		<input type="hidden" name="id" value="{{id}}" /> 
 		<div id='article_title'>
 			<span>文章标题: </span>
-			<input type="text" name="title" placeholder="请输入文章标题"></input>
+			<input type="text" name="title" placeholder="请输入文章标题" value="{{title}}"></input>
 		</div>
 		<div id='article_content'>
 			<span>文章内容: </span>
@@ -27,7 +28,7 @@
 			<div id="editer">
 				<!-- 加载编辑器的容器 -->
 				<script id="container" name="content" type="text/plain" style="width:640px;height:240px;">
-					请输入文章内容
+					{{{content}}}
 				</script>
 			</div>
 		
@@ -44,7 +45,11 @@
 		initialFrameWidth :640,//设置编辑器宽度
 		initialFrameHeight:240,//设置编辑器高度
 		scaleEnabled:true
-	});
+	});  
+	$(function(){
+ 
+	})
+
  </script>
 
 <script>
@@ -54,6 +59,7 @@ $(function(){
 
 		var data = $('#add_article_form').serialize()
 		var datas = $('#add_article_form').serializeArray()
+		console.log(datas)
 		var isNull = false
 		$.each(datas, function(k,v){
 			if(!v.value) {
@@ -64,15 +70,15 @@ $(function(){
 		if (isNull) return
 		console.log(datas)
 		$.ajax( {  
-			url:'/add_article_action',
+			url:'/edit_article_action',
 			data:data,  
 			type:'post',  
 			dataType:'json',  
 			success:function(data) {
 				if (data.result == 'success') {
-					alert('添加成功')
+					alert('修改成功')
 				} else {
-					alert('添加失败')
+					alert('修改失败')
 				}
 			},  
 			error:function() {  

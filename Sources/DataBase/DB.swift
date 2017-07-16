@@ -58,7 +58,7 @@ public class DB {
     }
     
     /// 关闭连接
-    private func close() {
+    public func close() {
         defer {
             self.collection!.close()
             self.db.close()

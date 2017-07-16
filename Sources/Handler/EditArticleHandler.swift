@@ -1,5 +1,5 @@
 //
-//  DeleteArticleHandler.swift
+//  AddArticleHandler.swift
 //  Today-News-Admin
 //
 //  Created by Mac on 17/7/13.
@@ -9,35 +9,38 @@
 import PerfectLib
 import PerfectHTTP
 import PerfectMustache
-import DataBase
 import MongoDB
+import DataBase
 import Model
 
-public struct DeleteArticleHandler: MustachePageHandler {
+
+public struct EditArticleHandler: MustachePageHandler {
     
-    /// DeleteArticle
-    public func deleteArticle() -> RequestHandler {
+    /// EditArticle
+    public func editArticle() -> RequestHandler {
         return { request, response in
             
-            var data = [String]()
-            for param in request.postParams {
-                data.append(param.1)
+            var data = [String : String]()
+            for param in request.params() {
+                data[param.0] = param.1
             }
-            print(data)
-            let db = DeleteArticleModel()
-            response.appendBody(string: db.deletes(data))
+            
+            let db = EditArticleModel()
+            response.appendBody(string: db.edit(data: data))
             
             response.completed()
         }
         
     }
     
+    
+    /// Mustache handler
     public func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
         var values = MustacheEvaluationContext.MapType()
-        
-        let obj = DeleteArticleModel()
-        values["articles"] = obj.articles()
-        values["total"] = obj.total
+        let request = contxt.webRequest
+
+        let id = request.urlVariables["id"] ?? ""
+        DetailArticleModel().find(id: id, values: &values)
         
         contxt.extendValues(with: values)
         do {
@@ -50,4 +53,3 @@ public struct DeleteArticleHandler: MustachePageHandler {
         }
     }
 }
-
