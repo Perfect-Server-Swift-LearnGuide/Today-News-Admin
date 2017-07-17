@@ -56,7 +56,9 @@ public struct Route {
         self.routes.add(routes)
     }
     
-
+    
+    
+    // MARK: - private method
     
     /// generate requestHandler
     private func handler(handler: Handler) -> RequestHandler {

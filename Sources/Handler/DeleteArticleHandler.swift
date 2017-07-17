@@ -23,7 +23,6 @@ public struct DeleteArticleHandler: MustachePageHandler {
             for param in request.postParams {
                 data.append(param.1)
             }
-            print(data)
             let db = DeleteArticleModel()
             response.appendBody(string: db.deletes(data))
             

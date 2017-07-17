@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04D095F91F1C7CC6006B66B8 /* HandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D095F81F1C7CC6006B66B8 /* HandlerType.swift */; };
 		04D095FB1F1C7CF5006B66B8 /* ActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D095FA1F1C7CF5006B66B8 /* ActionType.swift */; };
+		04D095FD1F1C7E9C006B66B8 /* AddArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D095FC1F1C7E9C006B66B8 /* AddArticleModel.swift */; };
 		OBJ_1000 /* cmll_ecb.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_156 /* cmll_ecb.c */; };
 		OBJ_1001 /* cmll_misc.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_157 /* cmll_misc.c */; };
 		OBJ_1002 /* cmll_ofb.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_158 /* cmll_ofb.c */; };
@@ -1874,6 +1875,7 @@
 /* Begin PBXFileReference section */
 		04D095F81F1C7CC6006B66B8 /* HandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlerType.swift; sourceTree = "<group>"; };
 		04D095FA1F1C7CF5006B66B8 /* ActionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionType.swift; sourceTree = "<group>"; };
+		04D095FC1F1C7E9C006B66B8 /* AddArticleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddArticleModel.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Dir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dir.swift; sourceTree = "<group>"; };
 		OBJ_100 /* bn_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bn_lib.c; sourceTree = "<group>"; };
 		OBJ_101 /* bn_mod.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bn_mod.c; sourceTree = "<group>"; };
@@ -3930,6 +3932,7 @@
 				OBJ_809 /* DetailArticleModel.swift */,
 				OBJ_810 /* EditArticleModel.swift */,
 				OBJ_811 /* LookArticleModel.swift */,
+				04D095FC1F1C7E9C006B66B8 /* AddArticleModel.swift */,
 			);
 			name = Model;
 			path = Sources/Model;
@@ -4687,6 +4690,7 @@
 				OBJ_846 /* Log.swift in Sources */,
 				OBJ_847 /* PerfectError.swift in Sources */,
 				04D095FB1F1C7CF5006B66B8 /* ActionType.swift in Sources */,
+				04D095FD1F1C7E9C006B66B8 /* AddArticleModel.swift in Sources */,
 				OBJ_848 /* PerfectServer.swift in Sources */,
 				OBJ_849 /* SwiftCompatibility.swift in Sources */,
 				OBJ_850 /* SysProcess.swift in Sources */,
