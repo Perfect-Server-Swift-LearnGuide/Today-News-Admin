@@ -46,6 +46,8 @@ public struct Handler {
         case .edit_article:
             self.action = EditArticleHandler().editArticle()
             
+        case .category_article:
+            self.action = CategoryArticleHandler().category()
         default:
             print("---")
         }

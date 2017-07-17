@@ -8,16 +8,18 @@
 	<div id="look_container">
 		<table>
 			<tr>
-				<th style="width: 15%">创建时间</th>
-				<th style="width: 25%">文章标题</th>
+				<th style="width: 11%">创建时间</th>
+				<th style="width: 23%">文章标题</th>
 				<th style="width: 50%">文章内容</th>
-				<th style="width: 10%">操作</th>
+				<th style="width: 7%"> 文章分类</th>
+				<th style="width: 8%">操作</th>
 			</tr>
 			{{#articles}}
 				<tr>
 					<td><div style="font-size:12px;">{{createtime}}</div></td>
 					<td><div>{{title}}</div></td>
 					<td><div>{{content}}</div></td>
+					<td><div>{{category}}</div></td>
 					<td><span id="look" jump="/detail_article/{{id}}">查看</span>&nbsp;&nbsp;<span id="edit" jump="/edit_article/{{id}}">编辑</span></td>
 				</tr>
 			{{/articles}}

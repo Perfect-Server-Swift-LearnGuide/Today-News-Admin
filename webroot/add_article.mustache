@@ -21,6 +21,12 @@
 			<span>文章标题: </span>
 			<input type="text" name="title" placeholder="请输入文章标题"></input>
 		</div>
+		<div id='article_category'>
+			<span>文章分类: </span>
+			<select name="type">
+				<option value="0">请选择</option>
+			</select>
+		</div>
 		<div id='article_content'>
 			<span>文章内容: </span>
 			<div class="clear"></div> 
@@ -50,8 +56,25 @@
 <script>
 
 $(function(){
-	$('#submit_btn').on('click', function(){
 
+	// 请求分类
+	$.ajax({  
+			url:'/category_article_action',  
+			type:'get',  
+			dataType:'json',  
+			success:function(res) {
+				$.each(res.data,function(k,v){
+					var option = "<option value="+v.type+">"+v.title+"</option>"
+					$("#article_category select").append(option)
+				})
+			},  
+			error:function() {  
+				alert("异常！");  
+			}  
+		});
+
+	// 提交修改
+	$('#submit_btn').on('click', function(){
 		var data = $('#add_article_form').serialize()
 		var datas = $('#add_article_form').serializeArray()
 		var isNull = false
@@ -62,6 +85,7 @@ $(function(){
 			}
 		})
 		if (isNull) return
+		console.log(data)
 		console.log(datas)
 		$.ajax( {  
 			url:'/add_article_action',

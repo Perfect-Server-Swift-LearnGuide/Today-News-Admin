@@ -28,7 +28,7 @@ public class DeleteArticleModel {
                 let oldBson = BSON()
                   oldBson.append(key: "_id", oid: BSON.OID(id))
                 let innerBson = BSON()
-                 innerBson.append(key: "isDelete", string: "true")
+                innerBson.append(key: "isDelete", bool: true)
                  let newdBson = BSON()
                  newdBson.append(key: "$set", document: innerBson)
                  updates.append((selector: oldBson, update: newdBson))

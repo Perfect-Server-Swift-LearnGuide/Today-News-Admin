@@ -23,7 +23,7 @@ public struct AddArticleHandler: MustachePageHandler {
             for param in request.params() {
                 data[param.0] = param.1
             }
-            
+
             data["createtime"] = try! formatDate(getNow(), format: "%Y/%m/%d %I:%M:%S")
             let db = AddArticleModel()
             response.appendBody(string: db.add(data: data))
@@ -47,4 +47,6 @@ public struct AddArticleHandler: MustachePageHandler {
             response.completed()
         }
     }
+    
+
 }

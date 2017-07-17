@@ -24,12 +24,14 @@ public class EditArticleModel {
         var updates: [(selector: BSON, update: BSON)] = []
 
         var response = [String:Any]()
-        if let id = data["id"], let title = data["title"], let content = data["content"] {
+        if let id = data["id"], let title = data["title"], let content = data["content"], let type = data["type"] {
             let oldBson = BSON()
             oldBson.append(key: "_id", oid: BSON.OID(id))
             let innerBson = BSON()
             innerBson.append(key: "title", string: title)
             innerBson.append(key: "content", string: content)
+            innerBson.append(key: "type", int: Int(type)!)
+            innerBson.append(key: "isDelete", bool: false)
             let newdBson = BSON()
             newdBson.append(key: "$set", document: innerBson)
             updates.append((selector: oldBson, update: newdBson))

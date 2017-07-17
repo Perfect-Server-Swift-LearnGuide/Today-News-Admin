@@ -47,6 +47,7 @@ public struct Route {
         routes.add(method: .post, uri: "/add_article_action", handler: Handler(action:.add_article).action!)
         routes.add(method: .post, uri: "/delete_article_action", handler: Handler(action:.delete_article).action!)
         routes.add(method: .post, uri: "/edit_article_action", handler: Handler(action:.edit_article).action!)
+        routes.add(method: .get, uri: "/category_article_action", handler: Handler(action:.category_article).action!)
         
         /// 处理静态文件
         self.addUEditorRoute(path: "themes")

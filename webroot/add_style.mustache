@@ -1,24 +1,23 @@
 <style>
 
-
 #add_article {
-    // background-color: red;
     height: 100%;
 }
 
 #add_article_form {
     height: 100%;
+    // background-color: green;
 }
 
 #article_title {
     margin: 0 auto;
     width: 800px;
     height: 40px;
-    // background-color: red;
 }
 
-#article_title span {
+#article_title span, #article_category span {
     height: 100%;
+    line-height: 40px;
     display: inline-block;
 }
 #article_title input {
@@ -29,12 +28,25 @@
     border: 1px solid #ddd;
     margin-left: 5px;
 }
+#article_category {
+    margin: 0 auto;
+    width: 800px;
+    height: 40px;
+    // background-color: red;
+}
+#article_category select {
+    height: 36px;
+    width: 450px;
+    padding-left: 6px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    margin-left: 5px;
+}
 #article_content {
     margin: 0 auto;
     margin-top: 10px;
     width: 800px;
     height: 400px; 
-    // background-color: green;
 }
 
 #article_content #editer {
@@ -51,12 +63,8 @@
     float: left;
     line-height: 100px;
 }
-// .clear{ clear: both} 
 #article_content #editer #container {
     display: inline-block;
-    // margin: 0 auto;
-    // float: left;
-    // margin-left: 5px;
 }
 #submit {
     margin: 0 auto;
@@ -64,6 +72,7 @@
     width: 500px;
     height: 40px; 
     // background: red;
+    margin-bottom: 30px;
 }
 #submit p {
     width: 200px;

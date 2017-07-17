@@ -40,13 +40,22 @@ public class LookArticleModel {
                 thisPost["id"] = ""
             }
             
+            if let type = data["type"] as? Int {
+                thisPost["category"] = CategoryArticleModel().categoryTitle(type: type)
+            } else {
+                thisPost["category"] = CategoryArticleModel().categoryTitle(type: 0)
+            }
+
             thisPost["createtime"] = data["createtime"] as? String
             thisPost["title"] = data["title"] as? String
             thisPost["content"] = data["content"] as? String
+            
             ary.append(thisPost)
         }
         return ary
     }
+    
+
     
     /// 将BSON对象转换为字典
     private func dictWithJSON(bson: BSON) -> JSONConvertible {
