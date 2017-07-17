@@ -9,46 +9,6 @@
 import PerfectHTTP
 import PerfectMustache
 
-/// Handler
-public enum HandlerType {
-    /// 首页
-    case index
-    
-    /// 添加文章
-    case add_article
-    
-    /// 删除文章
-    case delete_article
-    
-    /// 查看文章
-    case look_article
-    
-    /// 文章详情
-    case detail_article
-    
-    /// 编辑文章
-    case edit_article
-    
-}
-
-/// Action
-public enum ActionType {
-    /// 首页
-    case index
-    
-    /// 添加文章
-    case add_article
-    
-    /// 删除文章
-    case delete_article
-    
-    /// 查看文章
-    case look_article
-    
-    /// 编辑文章
-    case edit_article
-    
-}
 
 public struct Handler {
     
@@ -71,10 +31,7 @@ public struct Handler {
         }
     }
     
-    
-    public init() {
-        
-    }
+    public init() { }
     
     public init(action: ActionType) {
         

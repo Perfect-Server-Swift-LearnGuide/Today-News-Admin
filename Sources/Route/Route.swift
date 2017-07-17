@@ -12,6 +12,7 @@ import Common
 import Handler
 
 public struct Route {
+    
     /// 路由
     public var routes = Routes()
     
@@ -34,7 +35,7 @@ public struct Route {
         /// 设置路由
         var routes = Routes()
         
-
+        /// 模板页面
         routes.add(method: .get, uri: "/", handler: handler(handler: index))
         routes.add(method: .get, uri: "/add_article", handler: handler(handler: addArticle))
         routes.add(method: .get, uri: "/delete_article", handler: handler(handler: deleteArticle))
@@ -42,34 +43,14 @@ public struct Route {
         routes.add(method: .get, uri: "/detail_article/{id}", handler: handler(handler: detailArticle))
         routes.add(method: .get, uri: "/edit_article/{id}", handler: handler(handler: editArticle))
         
-        /// 设置动作
+        /// 动作请求
         routes.add(method: .post, uri: "/add_article_action", handler: Handler(action:.add_article).action!)
         routes.add(method: .post, uri: "/delete_article_action", handler: Handler(action:.delete_article).action!)
         routes.add(method: .post, uri: "/edit_article_action", handler: Handler(action:.edit_article).action!)
         
         /// 处理静态文件
-        routes.add(method: .get, uri: "/themes/**", handler: {request, response in
-            response.addHeader(.contentType, value: "text/css; charset=\"utf-8\"")
-            // 获得符合通配符的请求路径
-            request.path = request.urlVariables[routeTrailingWildcardKey]!
-            // 用文档根目录初始化静态文件句柄
-            let handler = StaticFileHandler(documentRoot: request.documentRoot + "/themes")
-            // 用我们的根目录和路径
-            // 修改集触发请求的句柄
-            handler.handleRequest(request: request, response: response)
-            response.completed()
-        })
-        routes.add(method: .get, uri: "/third-party/**", handler: {request, response in
-            response.addHeader(.contentType, value: "text/css; charset=\"utf-8\"")
-            // 获得符合通配符的请求路径
-            request.path = request.urlVariables[routeTrailingWildcardKey]!
-            // 用文档根目录初始化静态文件句柄
-            let handler = StaticFileHandler(documentRoot: request.documentRoot + "/third-party")
-            // 用我们的根目录和路径
-            // 修改集触发请求的句柄
-            handler.handleRequest(request: request, response: response)
-            response.completed()
-        })
+        self.addUEditorRoute(path: "themes")
+        self.addUEditorRoute(path: "third-party")
 
         /// 注册到服务器主路由表上
         self.routes.add(routes)
@@ -81,8 +62,6 @@ public struct Route {
     private func handler(handler: Handler) -> RequestHandler {
         return { request, response in
 
-
-//            print("response  \(response.headers)")
             response.setHeader(.contentType, value: "text/html")
             response.setHeader(.contentType, value: "text/css")
             mustacheRequest(
@@ -95,7 +74,21 @@ public struct Route {
         }
     }
 
+    private mutating func addUEditorRoute(path: String) {
+        routes.add(method: .get, uri: "/\(path)/**", handler: {request, response in
+            response.addHeader(.contentType, value: "text/css; charset=\"utf-8\"")
+            // 获得符合通配符的请求路径
+            request.path = request.urlVariables[routeTrailingWildcardKey]!
+            // 用文档根目录初始化静态文件句柄
+            let handler = StaticFileHandler(documentRoot: request.documentRoot + "/\(path)")
+            // 用我们的根目录和路径
+            // 修改集触发请求的句柄
+            handler.handleRequest(request: request, response: response)
+            response.completed()
+        })
+        
+    }
     
-  }
+}
 
 

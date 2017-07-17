@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D095F91F1C7CC6006B66B8 /* HandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D095F81F1C7CC6006B66B8 /* HandlerType.swift */; };
+		04D095FB1F1C7CF5006B66B8 /* ActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D095FA1F1C7CF5006B66B8 /* ActionType.swift */; };
 		OBJ_1000 /* cmll_ecb.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_156 /* cmll_ecb.c */; };
 		OBJ_1001 /* cmll_misc.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_157 /* cmll_misc.c */; };
 		OBJ_1002 /* cmll_ofb.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_158 /* cmll_ofb.c */; };
@@ -1870,6 +1872,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04D095F81F1C7CC6006B66B8 /* HandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlerType.swift; sourceTree = "<group>"; };
+		04D095FA1F1C7CF5006B66B8 /* ActionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionType.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Dir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dir.swift; sourceTree = "<group>"; };
 		OBJ_100 /* bn_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bn_lib.c; sourceTree = "<group>"; };
 		OBJ_101 /* bn_mod.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bn_mod.c; sourceTree = "<group>"; };
@@ -2640,24 +2644,24 @@
 		OBJ_817 /* webroot */ = {isa = PBXFileReference; lastKnownFileType = folder; path = webroot; sourceTree = SOURCE_ROOT; };
 		OBJ_819 /* PerfectLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_82 /* bio_md.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_md.c; sourceTree = "<group>"; };
-		OBJ_820 /* PerfectThread.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PerfectThread.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_821 /* COpenSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = COpenSSL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_822 /* PerfectCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PerfectCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_823 /* PerfectNet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PerfectNet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_824 /* PerfectHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PerfectHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_825 /* PerfectCHTTPParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PerfectCHTTPParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_826 /* PerfectCZlib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PerfectCZlib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_827 /* PerfectHTTPServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PerfectHTTPServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_828 /* MongoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MongoDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_829 /* PerfectMustache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PerfectMustache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_820 /* PerfectThread.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectThread.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_821 /* COpenSSL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = COpenSSL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_822 /* PerfectCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_823 /* PerfectNet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectNet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_824 /* PerfectHTTP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_825 /* PerfectCHTTPParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectCHTTPParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_826 /* PerfectCZlib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectCZlib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_827 /* PerfectHTTPServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectHTTPServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_828 /* MongoDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MongoDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_829 /* PerfectMustache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectMustache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_83 /* bio_ndef.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_ndef.c; sourceTree = "<group>"; };
 		OBJ_830 /* Application */ = {isa = PBXFileReference; lastKnownFileType = text; path = Application; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_831 /* Common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_832 /* DataBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DataBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_833 /* Handler.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Handler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_834 /* Model.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Model.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_835 /* Route.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Route.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_836 /* Server.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Server.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_831 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_832 /* DataBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DataBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_833 /* Handler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Handler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_834 /* Model.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Model.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_835 /* Route.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Route.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_836 /* Server.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Server.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_84 /* bio_ok.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_ok.c; sourceTree = "<group>"; };
 		OBJ_85 /* bio_pk7.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_pk7.c; sourceTree = "<group>"; };
 		OBJ_86 /* bio_ssl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_ssl.c; sourceTree = "<group>"; };
@@ -3643,7 +3647,7 @@
 			path = "Packages/COpenSSL-2.0.4/COpenSSL";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -3652,7 +3656,6 @@
 				OBJ_817 /* webroot */,
 				OBJ_818 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -3895,6 +3898,8 @@
 				OBJ_804 /* Handler.swift */,
 				OBJ_805 /* IndexHandler.swift */,
 				OBJ_806 /* LookArticleHandler.swift */,
+				04D095F81F1C7CC6006B66B8 /* HandlerType.swift */,
+				04D095FA1F1C7CF5006B66B8 /* ActionType.swift */,
 			);
 			name = Handler;
 			path = Sources/Handler;
@@ -4424,7 +4429,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_818 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -4678,8 +4683,10 @@
 				OBJ_843 /* Dir.swift in Sources */,
 				OBJ_844 /* File.swift in Sources */,
 				OBJ_845 /* JSONConvertible.swift in Sources */,
+				04D095F91F1C7CC6006B66B8 /* HandlerType.swift in Sources */,
 				OBJ_846 /* Log.swift in Sources */,
 				OBJ_847 /* PerfectError.swift in Sources */,
+				04D095FB1F1C7CF5006B66B8 /* ActionType.swift in Sources */,
 				OBJ_848 /* PerfectServer.swift in Sources */,
 				OBJ_849 /* SwiftCompatibility.swift in Sources */,
 				OBJ_850 /* SysProcess.swift in Sources */,
