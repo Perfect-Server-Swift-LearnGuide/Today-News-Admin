@@ -48,11 +48,12 @@ public struct Route {
         routes.add(method: .post, uri: "/delete_article_action", handler: Handler(action:.delete_article).action!)
         routes.add(method: .post, uri: "/edit_article_action", handler: Handler(action:.edit_article).action!)
         routes.add(method: .get, uri: "/category_article_action", handler: Handler(action:.category_article).action!)
+        routes.add(method: .get, uri: "/get_article_action", handler: Handler(action:.get_article).action!)
+        
         
         /// 处理静态文件
-        self.addUEditorRoute(path: "themes")
-        self.addUEditorRoute(path: "third-party")
-
+        addFileRoute(urls: ["/themes/**", "/third-party/**", "/laypage_skin/**", "/ueditor.config.js", "ueditor.all.js", "ueditor.parse.js", "/dialogs/**", "/jsp/**", "/lang/**", "/themes/**", "/third-party/**"])
+        
         /// 注册到服务器主路由表上
         self.routes.add(routes)
     }
@@ -77,13 +78,23 @@ public struct Route {
         }
     }
 
-    private mutating func addUEditorRoute(path: String) {
-        routes.add(method: .get, uri: "/\(path)/**", handler: {request, response in
+    private mutating func addFileRoute(urls: [String]) {
+        routes.add(method: .get, uris: urls, handler: {request, response in
             response.addHeader(.contentType, value: "text/css; charset=\"utf-8\"")
-            // 获得符合通配符的请求路径
-            request.path = request.urlVariables[routeTrailingWildcardKey]!
             // 用文档根目录初始化静态文件句柄
-            let handler = StaticFileHandler(documentRoot: request.documentRoot + "/\(path)")
+            
+            let path = request.path
+            
+            var uriPath = ""
+            if path.contains(string: "laypage") {
+                uriPath = "/js/lib/laypage/"
+            } else {
+                uriPath = "/js/lib/ueditor/"
+            }
+
+            let handler = StaticFileHandler(documentRoot: request.documentRoot)
+            request.path  = uriPath + path
+            
             // 用我们的根目录和路径
             // 修改集触发请求的句柄
             handler.handleRequest(request: request, response: response)

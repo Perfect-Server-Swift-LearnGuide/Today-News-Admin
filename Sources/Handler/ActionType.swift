@@ -27,4 +27,7 @@ public enum ActionType {
     /// 获取分类
     case category_article
     
+    /// 获取文章
+    case get_article
+    
 }

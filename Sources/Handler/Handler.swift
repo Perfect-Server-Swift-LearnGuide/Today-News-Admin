@@ -48,6 +48,10 @@ public struct Handler {
             
         case .category_article:
             self.action = CategoryArticleHandler().category()
+            
+        case .get_article:
+            self.action = LookArticleHandler().getArticle()
+            
         default:
             print("---")
         }

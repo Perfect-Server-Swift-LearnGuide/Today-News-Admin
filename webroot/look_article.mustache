@@ -2,10 +2,13 @@
 <!-- 查看文章样式 -->	
 {{> look_style}}
 
+<script src="js/lib/laypage/laypage.js"></script>
+
 <div id="look_article">
 	<h1>查看文章</h1>
 
 	<div id="look_container">
+		<input type="hidden" id="article_total" value="{{total}}" jump="/look_article/{{page}}" />
 		<table>
 			<tr>
 				<th style="width: 11%">创建时间</th>
@@ -15,26 +18,79 @@
 				<th style="width: 8%">操作</th>
 			</tr>
 			{{#articles}}
-				<tr>
+				<tr class="content_tr">
 					<td><div style="font-size:12px;">{{createtime}}</div></td>
 					<td><div>{{title}}</div></td>
 					<td><div>{{content}}</div></td>
 					<td><div>{{category}}</div></td>
-					<td><span style="font-size:14px;" id="look" jump="/detail_article/{{id}}">查看</span>&nbsp;&nbsp;<span style="font-size:14px;" id="edit" jump="/edit_article/{{id}}">编辑</span></td>
+					<td><span style="font-size:14px;" id="look" jump="/detail_article/{{id}}">查看</span>&nbsp;&nbsp;
+					<span style="font-size:14px;" id="edit" jump="/edit_article/{{id}}">编辑</span></td>
 				</tr>
 			{{/articles}}
 		</table>
 	</div>
-
+	<div id="page"></div>
 <div>
 
 <script>
 $(function(){
+	var page = parseInt($("#article_total").attr("value")) / 6
+	console.log(page)
+	// console.log(parseInt($("#article_total").val("value"))
+	laypage({
+		cont: 'page', //容器。值支持id名、原生dom对象，jquery对象,
+		pages: page, //总页数
+		skip: false, //是否开启跳页
+		skin: '#FFA000',
+		groups: 5, //连续显示分页数
+		first: '首页', //若不显示，设置false即可
+		last: '尾页', //若不显示，设置false即可
+		prev: '<', //若不显示，设置false即可
+		next: '>', //若不显示，设置false即可
+		hash: true, //开启hash
+		jump: function(obj){ //触发分页后的回调
+			// $('.view').html('目前正在第'+ obj.curr +'页，一共有：'+ obj.pages +'页');
+			console.log("=================" + obj.curr)
+			getData(obj.curr)
+		}
+	})
+
+	function getData(page) {
+		$.ajax( {  
+			url:'/get_article_action',
+			data:{"page" : page},  
+			type:'get',  
+			dataType:'json',  
+			success:function(data) {
+				var res = data.result
+				console.log(res)
+				$(".content_tr").remove()
+				$.each(res, function(k,v){
+					var html = '<tr class="content_tr">' + 
+					'<td><div style="font-size:12px;">'+v.createtime+'</div></td>' +
+					'<td><div>'+v.title+'</div></td>' +
+					'<td><div>'+v.content+'</div></td>' +
+					'<td><div>'+v.category+'</div></td>' +
+					'<td><span style="font-size:14px;" id="look" jump="/detail_article/'+v.id+'">查看</span>&nbsp;&nbsp' +
+					'<span style="font-size:14px;" id="edit" jump="/edit_article/'+v.id+'">编辑</span></td>' +
+					'</tr>'
+					
+					$("#look_container table").append(html)
+				})
+				$.each($("#look_container tr:gt(0) td:nth-child(3) div"), function(){
+					$(this).html($(this).text())
+				})
+			},  
+			error:function() {  
+				alert("异常！");  
+			}  
+		});
+	}
+
 	// console.log($("#look_container tr:gt(0) td:nth-child(3)"))
 	$.each($("#look_container tr:gt(0) td:nth-child(3) div"), function(){
 		$(this).html($(this).text())
 	})
-
 	// 查看
 	$("#look_container #look").on('click', function(){
 		// alert('查看')

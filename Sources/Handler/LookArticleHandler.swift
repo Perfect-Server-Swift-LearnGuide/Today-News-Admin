@@ -15,10 +15,28 @@ import Model
 
 public struct LookArticleHandler: MustachePageHandler {
     
+    public func getArticle()  -> RequestHandler {
+        return { request, response in
+            
+            let db = LookArticleModel()
+            var requestPage = 1
+            if let page = request.param(name: "page") {
+                requestPage = Int(page)!
+            }
+            
+            response.appendBody(string: db.articles(page: requestPage))
+            response.completed()
+        }
+        
+    }
+    
     public func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
         var values = MustacheEvaluationContext.MapType()
-
-        values["articles"] = LookArticleModel().articles()
+        
+        let db = LookArticleModel()
+        let _ = db.articles(page: 1)
+        values["articles"] = db.dataList
+        values["total"] = db.total()
         
         contxt.extendValues(with: values)
         do {

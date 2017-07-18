@@ -2,6 +2,8 @@
 <!-- 删除文章样式 -->	
 {{> delete_style}}
 
+<script src="js/lib/laypage/laypage.js"></script>
+
 <div>
 	<h1>删除文章</h1>
 	<div style="vertical-align:middle;background-color:#f5f5f5;height:40px;display:inline-block;margin:0 auto 20px;width:98%;">
@@ -19,7 +21,7 @@
 				<th style="width: 7%">操作</th>
 			</tr>
 			{{#articles}}
-				<tr>
+				<tr class="content_tr">
 					<td><div><input class="delete_select" type="checkbox" delete={{id}}></input></div></td>
 					<td><div style="font-size:12px;">{{createtime}}</div></td>
 					<td><div>{{title}}</div></td>
@@ -35,6 +37,56 @@
 
 <script>
 $(function(){
+	var page = parseInt($("#article_total").attr("value")) / 6
+	console.log(page)
+	// console.log(parseInt($("#article_total").val("value"))
+	laypage({
+		cont: 'page', //容器。值支持id名、原生dom对象，jquery对象,
+		pages: page, //总页数
+		skip: false, //是否开启跳页
+		skin: '#FFA000',
+		groups: 5, //连续显示分页数
+		first: '首页', //若不显示，设置false即可
+		last: '尾页', //若不显示，设置false即可
+		prev: '<', //若不显示，设置false即可
+		next: '>', //若不显示，设置false即可
+		hash: true, //开启hash
+		jump: function(obj){ //触发分页后的回调
+			// $('.view').html('目前正在第'+ obj.curr +'页，一共有：'+ obj.pages +'页');
+			console.log("=================" + obj.curr)
+			getData(obj.curr)
+		}
+	})
+
+	function getData(page) {
+		$.ajax( {  
+			url:'/get_article_action',
+			data:{"page" : page},  
+			type:'get',  
+			dataType:'json',  
+			success:function(data) {
+				var res = data.result
+				console.log(res)
+				$(".content_tr").remove()
+				$.each(res, function(k,v){
+					var html = '<tr class="content_tr">' + 
+					'<td><div style="font-size:12px;">'+v.createtime+'</div></td>' +
+					'<td><div>'+v.title+'</div></td>' +
+					'<td><div>'+v.content+'</div></td>' +
+					'<td><div>'+v.category+'</div></td>' +
+					'<td><span style="font-size:14px;" id="look" jump="/detail_article/'+v.id+'">查看</span>' +
+					'</tr>'
+					$("#look_container table").append(html)
+				})
+				$.each($("#look_container tr:gt(0) td:nth-child(3) div"), function(){
+					$(this).html($(this).text())
+				})
+			},  
+			error:function() {  
+				alert("异常！");  
+			}  
+		});
+	}
 
 	// 批量删除
 	$("#delete_btn").on('click', function(){

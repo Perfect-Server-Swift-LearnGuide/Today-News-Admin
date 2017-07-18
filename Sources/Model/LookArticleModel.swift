@@ -13,27 +13,35 @@ import Common
 
 public class LookArticleModel {
 
+    /// dataList
+    public var dataList = [Any]()
+    
+    /// dartabase
+    var db: DB
+    
+    /// colllection
+    var collection: MongoCollection?
+    
     public init() {
-        
+        db = DB(db: "today_news").collection(name: "article")
+        collection =  db.collection
     }
     
     /// 生成文章列表
-    public func articles() -> [Any] {
-        var ary = [Any]()
-        
-        let db = DB(db: "today_news").collection(name: "article")
-        let collection: MongoCollection? = db.collection
-        
+    public func articles(page: Int) -> String {
+
         /// 获取该集合下所有的信息
         let queryBson = BSON()
         queryBson.append(key: "isDelete", bool: false)
-        let cursor = collection?.find(query: queryBson)
+        let limit = 6
+        let skip = limit * (page - 1)
+        let cursor = collection?.find(query: queryBson, fields: nil, flags: MongoQueryFlag.none, skip: skip, limit: limit, batchSize: 0)
         
         while let c = cursor?.next() {
-        
             let data = c.dict
-            var thisPost = [String:String]()
-            let temp = data["_id"] as? [String : String]
+
+            var thisPost = [String:Any]()
+            let temp = data["_id"] as? [String : Any]
             if let dict = temp {
                 thisPost["id"] = dict["$oid"]
             } else {
@@ -49,10 +57,26 @@ public class LookArticleModel {
             thisPost["createtime"] = data["createtime"] as? String
             thisPost["title"] = data["title"] as? String
             thisPost["content"] = data["content"] as? String
-            
-            ary.append(thisPost)
+
+            self.dataList.append(thisPost)
         }
-        return ary
+        
+        var response = [String:Any]()
+        response["total"] = total()
+        response["result"] = self.dataList
+
+        return try! response.jsonEncodedString()
+    }
+    
+    /// get total num
+    public func total() -> Int {
+        let result: MongoResult = collection!.count(query: BSON())
+        switch result {
+        case .replyInt(let total):
+            return total
+        default:
+            return 0
+        }
     }
     
 }
