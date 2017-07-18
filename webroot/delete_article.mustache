@@ -11,11 +11,12 @@
 	<div id="look_container">
 		<table>
 			<tr>
-				<th style="width: 4%"><input id="all_delete_select" class="delete_select" type="checkbox"></input></th>
+				<th style="width: 3%"><input id="all_delete_select" class="delete_select" type="checkbox"></input></th>
 				<th style="width: 11%">创建时间</th>
-				<th style="width: 25%">文章标题</th>
+				<th style="width: 22%">文章标题</th>
 				<th style="width: 50%">文章内容</th>
-				<th style="width: 10%">操作</th>
+				<th style="width: 7%">文章分类</th>
+				<th style="width: 7%">操作</th>
 			</tr>
 			{{#articles}}
 				<tr>
@@ -23,7 +24,8 @@
 					<td><div style="font-size:12px;">{{createtime}}</div></td>
 					<td><div>{{title}}</div></td>
 					<td><div>{{content}}</div></td>
-					<td><span id="look" jump="/detail_article/{{id}}">查看</span>&nbsp;&nbsp;<span id="edit">编辑</span></td>
+					<td><div>{{category}}</div></td>
+					<td><span style="font-size:14px;" id="look" jump="/detail_article/{{id}}">查看</span></td>
 				</tr>
 			{{/articles}}
 		</table>
@@ -47,7 +49,7 @@ $(function(){
 
 		$.ajax( {  
 			url:'/delete_article_action',
-			data:{"delets":datas},  
+			data:{"deletes":datas},  
 			type:'post',  
 			dataType:'json',  
 			success:function(data) {

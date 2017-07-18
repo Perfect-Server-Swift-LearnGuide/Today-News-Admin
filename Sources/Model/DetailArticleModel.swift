@@ -9,7 +9,6 @@
 import DataBase
 import MongoDB
 import PerfectLib
-import BSON
 
 public class DetailArticleModel {
 
@@ -28,7 +27,7 @@ public class DetailArticleModel {
         let cursor = collection?.find(query: bson)
         while let c = cursor?.next() {
             
-            let data = dictWithJSON(bson: c) as! [String : Any]
+            let data = c.dict
             let temp = data["_id"] as? [String : String]
             if let dict = temp {
                 values["id"] = dict["$oid"]
@@ -43,10 +42,5 @@ public class DetailArticleModel {
         
     }
     
-    /// 将BSON对象转换为字典
-    private func dictWithJSON(bson: BSON) -> JSONConvertible {
-        let json = bson.asString
-        let jsonDict = try! json.jsonDecode()
-        return jsonDict
-    }
+
 }

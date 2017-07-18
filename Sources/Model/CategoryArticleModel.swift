@@ -9,6 +9,7 @@
 import DataBase
 import MongoDB
 import PerfectLib
+import Common
 
 public class CategoryArticleModel {
 
@@ -24,7 +25,7 @@ public class CategoryArticleModel {
         var ary = [Any]()
         while let c = cursor?.next() {
             
-            let data = dictWithJSON(bson: c) as! [String : Any]
+            let data = c.dict
             var thisPost = [String: Any]()
 
             thisPost["type"] = data["type"] as? Int
@@ -54,18 +55,10 @@ public class CategoryArticleModel {
         let cursor = collection?.find(query: queryBson)
         var title = ""
         while let c = cursor?.next() {
-            let data = dictWithJSON(bson: c) as! [String : Any]
+            let data = c.dict
             title = data["title"] as! String
         }
         return title
     }
-    
-    /// 将BSON对象转换为字典
-    private func dictWithJSON(bson: BSON) -> JSONConvertible {
-        let json = bson.asString
-        let jsonDict = try! json.jsonDecode()
-        return jsonDict
-    }
-
     
 }

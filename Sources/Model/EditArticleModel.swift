@@ -54,11 +54,5 @@ public class EditArticleModel {
         return try! response.jsonEncodedString()
         
     }
-    
-    /// 将BSON对象转换为字典
-    private func dictWithJSON(bson: BSON) -> JSONConvertible {
-        let json = bson.asString
-        let jsonDict = try! json.jsonDecode()
-        return jsonDict
-    }
+
 }

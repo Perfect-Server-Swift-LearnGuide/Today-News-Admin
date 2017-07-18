@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		046FAEB71F1DC75F008F03CC /* BSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046FAEB61F1DC75F008F03CC /* BSONExtension.swift */; };
 		04D096861F1C9D54006B66B8 /* CategoryArticleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D096851F1C9D54006B66B8 /* CategoryArticleHandler.swift */; };
 		04D096881F1C9DD9006B66B8 /* CategoryArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D096871F1C9DD9006B66B8 /* CategoryArticleModel.swift */; };
 		OBJ_1000 /* cmll_cbc.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_153 /* cmll_cbc.c */; };
@@ -1875,6 +1876,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		046FAEB61F1DC75F008F03CC /* BSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSONExtension.swift; sourceTree = "<group>"; };
 		04D096851F1C9D54006B66B8 /* CategoryArticleHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryArticleHandler.swift; sourceTree = "<group>"; };
 		04D096871F1C9DD9006B66B8 /* CategoryArticleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryArticleModel.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Dir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dir.swift; sourceTree = "<group>"; };
@@ -3653,7 +3655,7 @@
 			path = "Packages/COpenSSL-2.0.4/COpenSSL";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -3662,7 +3664,6 @@
 				OBJ_820 /* webroot */,
 				OBJ_821 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -3881,6 +3882,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_796 /* Constant.swift */,
+				046FAEB61F1DC75F008F03CC /* BSONExtension.swift */,
 			);
 			name = Common;
 			path = Sources/Common;
@@ -4439,7 +4441,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_821 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -4696,6 +4698,7 @@
 				OBJ_845 /* Bytes.swift in Sources */,
 				04D096861F1C9D54006B66B8 /* CategoryArticleHandler.swift in Sources */,
 				OBJ_846 /* Dir.swift in Sources */,
+				046FAEB71F1DC75F008F03CC /* BSONExtension.swift in Sources */,
 				OBJ_847 /* File.swift in Sources */,
 				OBJ_848 /* JSONConvertible.swift in Sources */,
 				OBJ_849 /* Log.swift in Sources */,

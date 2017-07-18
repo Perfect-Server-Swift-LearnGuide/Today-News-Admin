@@ -9,6 +9,7 @@
 import DataBase
 import MongoDB
 import PerfectLib
+import Common
 
 public class LookArticleModel {
 
@@ -29,9 +30,8 @@ public class LookArticleModel {
         let cursor = collection?.find(query: queryBson)
         
         while let c = cursor?.next() {
-            
-            let data = dictWithJSON(bson: c) as! [String : Any]
-
+        
+            let data = c.dict
             var thisPost = [String:String]()
             let temp = data["_id"] as? [String : String]
             if let dict = temp {
@@ -55,12 +55,4 @@ public class LookArticleModel {
         return ary
     }
     
-
-    
-    /// 将BSON对象转换为字典
-    private func dictWithJSON(bson: BSON) -> JSONConvertible {
-        let json = bson.asString
-        let jsonDict = try! json.jsonDecode()
-        return jsonDict
-    }
 }
