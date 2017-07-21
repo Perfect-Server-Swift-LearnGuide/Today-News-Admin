@@ -34,10 +34,13 @@ public class DetailArticleModel {
             } else {
                 values["id"] = ""
             }
+
             values["createtime"] = data["createtime"] as? String
             values["title"] = data["title"] as? String
             values["content"] = data["content"] as? String
-            
+            values["source"] = data["source"] as? String
+            values["type"] = data["type"] as? Int
+
         }
         
     }

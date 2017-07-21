@@ -17,14 +17,18 @@
 	<h1>修改文章</h1>
 
 	<form id='add_article_form'>
-		<input type="hidden" name="id" value="{{id}}" /> 
+		<input type="hidden" name="id" value="{{id}}" />
 		<div id='article_title'>
 			<span>文章标题: </span>
 			<input type="text" name="title" placeholder="请输入文章标题" value="{{title}}"></input>
 		</div>
-			<div id='article_category'>
+		<div id='article_source'>
+			<span>文章来源: </span>
+			<input type="text" name="source" placeholder="请输入文章来源" value="{{source}}"></input>
+		</div>
+		<div id='article_category'>
 			<span>文章分类: </span>
-			<select name="type">
+			<select name="type" defselect="{{type}}">
 				<option value="0">请选择</option>
 			</select>
 		</div>
@@ -69,7 +73,9 @@ $(function(){
 			dataType:'json',  
 			success:function(res) {
 				$.each(res.data,function(k,v){
-					var option = "<option value="+v.type+">"+v.title+"</option>"
+					var def_select = parseInt($("#article_category select").attr("defselect"))
+					var eq_select = (def_select == v.type)
+					var option = '<option ' +(eq_select ? 'selected="selected"' : '')+ ' value="'+v.type+'">'+v.title+'</option>'
 					$("#article_category select").append(option)
 				})
 			},  

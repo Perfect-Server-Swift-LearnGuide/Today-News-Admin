@@ -21,6 +21,10 @@
 			<span>文章标题: </span>
 			<input type="text" name="title" placeholder="请输入文章标题"></input>
 		</div>
+		<div id='article_source'>
+			<span>文章来源: </span>
+			<input type="text" name="source" placeholder="请输入文章来源"></input>
+		</div>
 		<div id='article_category'>
 			<span>文章分类: </span>
 			<select name="type">
@@ -95,6 +99,10 @@ $(function(){
 			success:function(data) {
 				if (data.result == 'success') {
 					alert('添加成功')
+					ue.setContent('请输入文章内容')
+					$("#article_title input").val("")
+					$("#article_source input").val("")
+					$("#article_category select option").eq(0).attr('selected', 'true');
 				} else {
 					alert('添加失败')
 				}

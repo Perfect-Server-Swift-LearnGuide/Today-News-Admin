@@ -16,7 +16,7 @@ public class EditArticleModel {
         
     }
     
-    /// 删除文章
+    /// 编辑文章
     public func edit(data: [String: String]) -> String {
         let db = DB(db: "today_news").collection(name: "article")
         let collection: MongoCollection? = db.collection
@@ -30,6 +30,7 @@ public class EditArticleModel {
             let innerBson = BSON()
             innerBson.append(key: "title", string: title)
             innerBson.append(key: "content", string: content)
+            innerBson.append(key: "source", string: content)
             innerBson.append(key: "type", int: Int(type)!)
             innerBson.append(key: "isDelete", bool: false)
             let newdBson = BSON()

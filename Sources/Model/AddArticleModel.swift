@@ -19,8 +19,16 @@ public class AddArticleModel {
         
         let db = DB(db: "today_news").collection(name: "article")
         let collection: MongoCollection? = db.collection
-        let doc = try! BSON(json: try! data.jsonEncodedString())
+        
+        var datas = data
+        if let type = data["type"] as? String {
+            datas["type"] = Int(type)
+        }
+        
+        let doc = try! BSON(json: try! datas.jsonEncodedString())
         doc.append(key: "isDelete", bool: false)
+        
+        
         let result: MongoResult = collection!.insert(document: doc)
         
         var response = [String:Any]()
