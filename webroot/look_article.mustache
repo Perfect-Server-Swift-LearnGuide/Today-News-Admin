@@ -80,25 +80,26 @@ $(function(){
 				$.each($("#look_container tr:gt(0) td:nth-child(3) div"), function(){
 					$(this).html($(this).text())
 				})
+
+					// console.log($("#look_container tr:gt(0) td:nth-child(3)"))
+
+				// 查看
+				$("#look_container #look").on('click', function(){
+					$("#index_content").load($(this).attr('jump'));
+				})
+				// 编辑
+				$("#look_container #edit").on('click', function(){
+					$("#index_content").load($(this).attr('jump'));
+				})
 			},  
 			error:function() {  
 				alert("异常！");  
 			}  
 		});
 	}
-
-	// console.log($("#look_container tr:gt(0) td:nth-child(3)"))
 	$.each($("#look_container tr:gt(0) td:nth-child(3) div"), function(){
 		$(this).html($(this).text())
 	})
-	// 查看
-	$("#look_container #look").on('click', function(){
-		// alert('查看')
-		$("#index_content").load($(this).attr('jump'));
-	})
-	// 编辑
-	$("#look_container #edit").on('click', function(){
-		$("#index_content").load($(this).attr('jump'));
-	})
+
 })
 </script>

@@ -11,6 +11,7 @@
 		<p id="delete_btn">批量删除</p>
 	</div>
 	<div id="look_container">
+		<input type="hidden" id="article_total" value="{{total}}" jump="/look_article/{{page}}" />
 		<table>
 			<tr>
 				<th style="width: 3%"><input id="all_delete_select" class="delete_select" type="checkbox"></input></th>
@@ -32,7 +33,7 @@
 			{{/articles}}
 		</table>
 	</div>
-
+	<div id="page"></div>
 <div>
 
 <script>
@@ -66,10 +67,11 @@ $(function(){
 			dataType:'json',  
 			success:function(data) {
 				var res = data.result
-				console.log(res)
+				console.log( data)
 				$(".content_tr").remove()
 				$.each(res, function(k,v){
 					var html = '<tr class="content_tr">' + 
+					'<td><div><input class="delete_select" type="checkbox" delete='+v.id+'></input></div></td>' +
 					'<td><div style="font-size:12px;">'+v.createtime+'</div></td>' +
 					'<td><div>'+v.title+'</div></td>' +
 					'<td><div>'+v.content+'</div></td>' +
@@ -78,8 +80,13 @@ $(function(){
 					'</tr>'
 					$("#look_container table").append(html)
 				})
-				$.each($("#look_container tr:gt(0) td:nth-child(3) div"), function(){
+				$.each($("#look_container tr:gt(0) td:nth-child(4) div"), function(){
 					$(this).html($(this).text())
+				})
+
+				// 查看
+				$("#look_container #look").on('click', function(){
+					$("#index_content").load($(this).attr('jump'));
 				})
 			},  
 			error:function() {  
@@ -124,17 +131,8 @@ $(function(){
 
 	// 选中
 	$("#all_delete_select").on('click',function(){
-		console.log($(this).prop('checked'))
 		$('.delete_select').prop('checked',$(this).prop('checked'));
 	})
-	// 查看
-	$("#look_container #look").on('click', function(){
-		// alert('查看')
-		$("#index_content").load($(this).attr('jump'));
-	})
-	// 编辑
-	$("#look_container #edit").on('click', function(){
 
-	})
 })
 </script>
