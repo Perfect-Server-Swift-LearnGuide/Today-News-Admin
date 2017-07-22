@@ -62,15 +62,15 @@ public class LookArticleModel {
         }
         
         var response = [String:Any]()
-        response["total"] = total()
+        response["total"] = total(queryBson)
         response["result"] = self.dataList
 
         return try! response.jsonEncodedString()
     }
     
     /// get total num
-    public func total() -> Int {
-        let result: MongoResult = collection!.count(query: BSON())
+    public func total(_ bson: queryBson) -> Int {
+        let result: MongoResult = collection!.count(query: bson)
         switch result {
         case .replyInt(let total):
             return total
