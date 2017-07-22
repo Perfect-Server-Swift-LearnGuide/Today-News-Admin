@@ -69,7 +69,7 @@ public class LookArticleModel {
     }
     
     /// get total num
-    public func total(_ bson: queryBson) -> Int {
+    public func total(_ bson: BSON) -> Int {
         let result: MongoResult = collection!.count(query: bson)
         switch result {
         case .replyInt(let total):

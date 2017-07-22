@@ -35,8 +35,10 @@ public struct LookArticleHandler: MustachePageHandler {
         
         let db = LookArticleModel()
         let _ = db.articles(page: 1)
+        let queryBson = BSON()
+        queryBson.append(key: "isDelete", bool: false)
         values["articles"] = db.dataList
-        values["total"] = db.total()
+        values["total"] = db.total(queryBson)
         
         contxt.extendValues(with: values)
         do {
