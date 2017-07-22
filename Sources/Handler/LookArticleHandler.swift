@@ -35,6 +35,7 @@ public struct LookArticleHandler: MustachePageHandler {
         
         let db = LookArticleModel()
         let _ = db.articles(page: 1)
+        
         let queryBson = BSON()
         queryBson.append(key: "isDelete", bool: false)
         values["articles"] = db.dataList
