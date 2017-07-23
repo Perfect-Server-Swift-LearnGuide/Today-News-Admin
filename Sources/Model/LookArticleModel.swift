@@ -36,7 +36,7 @@ public class LookArticleModel {
         let limit = 6
         let skip = limit * (page - 1)
         let cursor = collection?.find(query: queryBson, fields: nil, flags: MongoQueryFlag.none, skip: skip, limit: limit, batchSize: 0)
-        
+  
         while let c = cursor?.next() {
             let data = c.dict
 

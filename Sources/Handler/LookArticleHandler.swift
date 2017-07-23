@@ -40,7 +40,7 @@ public struct LookArticleHandler: MustachePageHandler {
         queryBson.append(key: "isDelete", bool: false)
         values["articles"] = db.dataList
         values["total"] = db.total(queryBson)
-        
+
         contxt.extendValues(with: values)
         do {
             try contxt.requestCompleted(withCollector: collector)

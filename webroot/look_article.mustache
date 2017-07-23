@@ -63,6 +63,7 @@ $(function(){
 			dataType:'json',  
 			success:function(data) {
 				var res = data.result
+				console.log("res  =====")
 				console.log(res)
 				$(".content_tr").remove()
 				$.each(res, function(k,v){
