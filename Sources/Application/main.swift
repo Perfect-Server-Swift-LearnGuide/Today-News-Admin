@@ -33,10 +33,30 @@ let server = Server().server
 configureServer(server)
 
 do {
+//    var json = [String : Any]()
+//    let param = "[{\"name\":\"title\",\"value\":\"rrt\"},{\"name\":\"source\",\"value\":\"y567\"},{\"name\":\"type\",\"value\":\"0\"},{\"name\":\"content\",\"value\":\"<p>请输入文章内容</p>\"},{\"name\":\"images\",\"value\":[\"../upload_files/article_thumbnail2017-07-25-22-24-01.png\",\"../upload_files/article_thumbnail2017-07-25-22-24-04.png\"]}]"
+//    
+//    let datas = try! param.jsonDecode() as! [[String : Any]]
+//    var params = [String : Any]()
+//    for data in datas {
+//        if let key = data["name"] as? String {
+//            if key.contains(string: "images") {
+//                var images = data["value"] as! [String]
+//                images = images.map({ (image)  in
+//                    image.stringByReplacing(string: "..", withString: "127.0.0.1:8282")
+//                })
+//                params[key] = images
+//            } else {
+//                params[key] = data["value"] ?? ""
+//            }
+//        }
+//    }
+//
+//    print(params)
     
 	/// 启动服务器
 	try server.start()
-    
+
 } catch PerfectError.networkError(let err, let msg) {
     
 	print("Network error thrown: \(err) \(msg)")

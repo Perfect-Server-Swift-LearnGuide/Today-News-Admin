@@ -30,5 +30,8 @@ public enum ActionType {
     /// 获取文章
     case get_article
     
+    /// 上传文章缩略图
+    case article__thumbnail_upload
+    
     
 }

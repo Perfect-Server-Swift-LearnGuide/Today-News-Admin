@@ -18,15 +18,31 @@ public struct AddArticleHandler: MustachePageHandler {
     /// AddArticle
     public func addArticle() -> RequestHandler {
         return { request, response in
-            
-            var data = [String : Any]()
-            for param in request.params() {
-                data[param.0] = param.1
-            }
 
-            data["createtime"] = try! formatDate(getNow(), format: "%Y/%m/%d %I:%M:%S")
+
+            var json = ""
+            for param in request.params() {
+                json = param.0
+            }
+            let datas = try! json.jsonDecode() as! [[String : Any]]
+            var params = [String : Any]()
+            for data in datas {
+                if let key = data["name"] as? String {
+       
+                    if key.contains(string: "thumbnails") {
+                        var images = data["value"] as! [String]
+                        images = images.map({ (image)  in
+                            image.stringByReplacing(string: "..", withString: "127.0.0.1:8282")
+                        })
+                        params[key] = images
+                    } else {
+                        params[key] = data["value"] ?? ""
+                    }
+                }
+            }
+            params["createtime"] = try! formatDate(getNow(), format: "%Y/%m/%d %I:%M:%S")
             let db = AddArticleModel()
-            response.appendBody(string: db.add(data: data))
+            response.appendBody(string: db.add(data: params))
             
             response.completed()
         }

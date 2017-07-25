@@ -52,6 +52,10 @@ public struct Handler {
         case .get_article:
             self.action = LookArticleHandler().getArticle()
             
+        case .article__thumbnail_upload:
+            self.action = UploadArticleImageHandler().articleimageHandler()
+
+            
         default:
             print("---")
         }

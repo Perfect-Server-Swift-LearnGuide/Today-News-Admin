@@ -10,7 +10,7 @@
 <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
 <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 <script type="text/javascript" charset="utf-8" src="lang/zh-cn/zh-cn.js"></script>
-
+<script type="text/javascript" src="./js/public.js"></script>
 
 
 <div id='add_article'>
@@ -31,12 +31,30 @@
 				<option value="0">请选择</option>
 			</select>
 		</div>
+
 		<div id="upload_list">
 			<span>上传文章简要图: </span>
-			
 			<div id="placeholder_upload">
 				<div id="upload_img">
 					<img style="margin-top:100px;" src="./images/upload_place_img.png" />
+					<p style="background-color:#ffa100;color:#fff;width:160px;height:20px;text-align:center;padding-top:10px;padding-bottom:10px;margin:0 auto;border-radius:5px;">
+					选择图片
+					<input type="file" accept="image/png,image/gif,image/jpg" name="article_thumbnail" class="add_img" onchange="add_imgs_action(event)" />
+					</p>
+			
+				</div>
+				<div id="upload_img_list" style="display:none">
+					<div id="img_content">
+					</div>
+					<div id="img_bottom">
+					<p style="float:left;margin-left:80px;background-color:#ffa100;color:#fff;width:160px;height:20px;text-align:center;padding-top:10px;padding-bottom:10px;border-radius:5px;">
+					选择图片
+					<input type="file" accept="image/png,image/gif,image/jpg" name="article_thumbnail" class="add_img" onchange="add_imgs_action(event)" />
+					</p>
+					<p id="upload_img_action" style="float:right;margin-right:80px;background-color:#ffa100;color:#fff;width:160px;height:20px;padding-top:10px;padding-bottom:10px;text-align:center;border-radius:5px;">
+					上传图片
+					</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -67,8 +85,77 @@
  </script>
 
 <script>
+ //base64 转 二进制文件
+function dataURItoBlob(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], {type: mimeString});
+}
+
+	var img_upload_formdata = new FormData();
+// 添加图片
+function add_imgs_action(e) {
+	$("#upload_img").css("display", "none")
+	$("#upload_img_list").css("display", "inline-block")
+	
+	if($("#upload_img_list #img_content").length > 8) {
+		alert("最多选择9张图片")
+		return false
+	}
+
+	var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        // 图片的 base64 格式, 可以直接当成 img 的 src 属性值
+        var dataURL = reader.result;
+		var blob = dataURItoBlob(dataURL);
+		var date = new Date().Format("yyyy-MM-dd-hh-mm-ss");
+		img_upload_formdata.append('article_thumbnail' + date, blob);
+		var html = '<span style="width:96px;height:100px;margin:5px;position:relative;">' + 
+		'<img style="width:100%;height:100%;position:absolute;" id="'+date+'" src="'+dataURL+'" />' + 
+		'<p class="delete_img"></p>' +
+		'</span>'
+		$("#upload_img_list #img_content").append(html)
+		$(".delete_img").on("click",function(){
+			$(this).fadeOut(500,function(){
+				$(this).parent().remove();
+			})
+		})
+	}
+    reader.readAsDataURL(file); // 读出 base64
+}
 
 $(function(){
+
+
+	$("#upload_img_action").on('click',function(){
+		$.ajax({  
+			url:'/article_thumbnail_upload_action',  
+			type:'post',  
+			dataType:'json',
+			data:img_upload_formdata,
+			cache:false,
+			processData:false,
+			contentType:false,
+			success:function(res) {
+				
+				$.each($("#upload_img_list #img_content img"), function(k,v){
+					if (res.result.urls[k].url.indexOf($(this).attr("id")) != -1) {
+						$(this).attr("src", res.result.urls[k].url)
+					}
+				})
+				alert("上传成功")
+			},  
+			error:function() {  
+				alert("异常！");  
+			}  
+		});
+	})
 
 	// 请求分类
 	$.ajax({  
@@ -88,7 +175,15 @@ $(function(){
 
 	// 提交修改
 	$('#submit_btn').on('click', function(){
-		var data = $('#add_article_form').serialize()
+
+	var imgs = []
+	$.each($("#upload_img_list #img_content img"), function(k,v){
+		if($(this).attr("src").indexOf("thumbnail") == -1) {
+			alert("请先上传图片")
+			return false
+		}
+		imgs[k] = $(this).attr("src")
+	})
 		var datas = $('#add_article_form').serializeArray()
 		var isNull = false
 		$.each(datas, function(k,v){
@@ -97,12 +192,17 @@ $(function(){
 				isNull = true
 			}
 		})
+		datas.push({"name" : "thumbnails", "value" : imgs})
 		if (isNull) return
-		console.log(data)
-		console.log(datas)
+
+		// console.log(data)
+		 console.log(datas)
+		 console.log("====")
+		 console.log(JSON.stringify(datas))
+		//  return false
 		$.ajax( {  
 			url:'/add_article_action',
-			data:data,  
+			data:JSON.stringify(datas),  
 			type:'post',  
 			dataType:'json',  
 			success:function(data) {

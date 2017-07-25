@@ -37,6 +37,7 @@ public struct Route {
         
         /// 模板页面
         routes.add(method: .get, uri: "/", handler: handler(handler: index))
+        routes.add(method: .get, uri: "/upload_files", handler: imageHandler())
         routes.add(method: .get, uri: "/add_article", handler: handler(handler: addArticle))
         routes.add(method: .get, uri: "/delete_article", handler: handler(handler: deleteArticle))
         routes.add(method: .get, uri: "/look_article", handler: handler(handler: lookArticle))
@@ -49,7 +50,7 @@ public struct Route {
         routes.add(method: .post, uri: "/edit_article_action", handler: Handler(action:.edit_article).action!)
         routes.add(method: .get, uri: "/category_article_action", handler: Handler(action:.category_article).action!)
         routes.add(method: .get, uri: "/get_article_action", handler: Handler(action:.get_article).action!)
-        
+        routes.add(method: .post, uri: "/article_thumbnail_upload_action", handler: Handler(action:.article__thumbnail_upload).action!)
         
         /// 处理静态文件
         addFileRoute(urls: ["/themes/**", "/third-party/**", "/laypage_skin/**", "/ueditor.config.js", "ueditor.all.js", "ueditor.parse.js", "/dialogs/**", "/jsp/**", "/lang/**", "/themes/**", "/third-party/**"])
@@ -63,6 +64,14 @@ public struct Route {
     // MARK: - private method
     
     /// generate requestHandler
+    private func imageHandler() -> RequestHandler {
+        return { request, response in
+            print(request.header(HTTPRequestHeader.Name.contentType)!)
+            response.setHeader(.contentType, value: request.header(HTTPRequestHeader.Name.contentType)!)
+            response.completed()
+        }
+    }
+    
     private func handler(handler: Handler) -> RequestHandler {
         return { request, response in
 
