@@ -40,7 +40,17 @@ public class DetailArticleModel {
             values["content"] = data["content"] as? String
             values["source"] = data["source"] as? String
             values["type"] = data["type"] as? Int
-
+            
+            var thumbnails = [[String : String]]()
+            if let images = data["thumbnails"] as? [String] {
+                for image in images {
+                    var id = image.replacingOccurrences(of: "http://127.0.0.1:8282/upload_files/article_thumbnail", with: "")
+                    id = id.components(separatedBy: ".").first!
+                    thumbnails.append(["imgUrl" : image.replacingOccurrences(of: "http://127.0.0.1:8282", with: ".."),
+                                       "id" : id])
+                }
+            }
+            values["thumbnails"] = thumbnails
         }
         
     }

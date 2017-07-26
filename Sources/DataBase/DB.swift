@@ -25,7 +25,7 @@ public class DB {
     public init(db: String) {
         
         /// 通过默认的端口连接MongoDB
-        self.client = try! MongoClient(uri: "mongodb://192.168.2.116")
+        self.client = try! MongoClient(uri: "mongodb://127.0.0.1")
         
         /// DataBase
         self.db = self.client.getDatabase(name: db)
