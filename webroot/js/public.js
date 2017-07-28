@@ -19,31 +19,3 @@ Date.prototype.Format = function (fmt) { //author: meizz
     if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
-
-/*
-eg:
-
-judge_order_status(eles,{
-    "1" : {"display" : "block", "color" : "black"},
-    "2" : {"display" : "none",  "color" : "red"},
-})
-
-*/   
-
-judge_order_status(eles,{
-    "ordermy" : {
-        "1" : {"display" : "block", "color" : "black"},
-        "2" : {"display" : "none",  "color" : "red"}
-    }  
-    "myorder" : {
-        "1" : {"display" : "block", "color" : "black"},
-        "2" : {"display" : "none",  "color" : "red"}
-    } 
-})
-
-function judge_order_status(eles, style){
-    $.each(eles,function(){
-        var order_type = $(this).attr("order_type")
-        $(this).css(style[order_type][$(this).attr("status")])
-    })
-}

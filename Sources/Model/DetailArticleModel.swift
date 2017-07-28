@@ -48,6 +48,7 @@ public class DetailArticleModel {
                     id = id.components(separatedBy: ".").first!
                     thumbnails.append(["imgUrl" : image.replacingOccurrences(of: "http://127.0.0.1:8282", with: ".."),
                                        "id" : id])
+                    print(image.replacingOccurrences(of: "http://127.0.0.1:8282", with: ".."))
                 }
             }
             values["thumbnails"] = thumbnails

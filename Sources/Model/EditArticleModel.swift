@@ -38,8 +38,6 @@ public class EditArticleModel {
             let imageBson = try! BSON(json: try! thumbnails.jsonEncodedString())
             let _ = innerBson.appendArray(key: "thumbnails", array: imageBson)
             
-            print(innerBson)
-            
             let newdBson = BSON()
             newdBson.append(key: "$set", document: innerBson)
             updates.append((selector: oldBson, update: newdBson))
