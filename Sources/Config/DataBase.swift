@@ -1,4 +1,4 @@
-public let database: [String: String] = [
+public let database = [
 
     
     
