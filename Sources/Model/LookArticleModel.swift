@@ -39,7 +39,6 @@ public class LookArticleModel {
 
         while let c = cursor?.next() {
             
-            
             let data = c.dict
 
             var thisPost = [String:Any]()

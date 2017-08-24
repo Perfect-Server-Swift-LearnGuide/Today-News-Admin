@@ -6,7 +6,8 @@ let package = Package(
 
         Target(name: "Application", dependencies: ["Server"]),
         Target(name: "Common", dependencies: []),
-        Target(name: "DataBase", dependencies: []),
+        Target(name: "Config", dependencies: []),
+        Target(name: "DataBase", dependencies: ["Config"]),
         Target(name: "Model", dependencies: ["DataBase","Common"]),
         Target(name: "Server", dependencies: ["Route", "DataBase"]),
         Target(name: "Handler", dependencies: ["Common", "DataBase","Model"]),
