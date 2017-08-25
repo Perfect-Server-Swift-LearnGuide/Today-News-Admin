@@ -8,7 +8,7 @@
 	<h1>查看文章</h1>
 
 	<div id="look_container">
-		<input type="hidden" id="article_total" value="{{total}}" jump="/look_article/{{page}}" />
+		<input type="hidden" id="article_total" value="{{total}}" jump="/article/look/{{page}}" />
 		<table>
 			<tr>
 				<th style="width: 11%">创建时间</th>
@@ -23,8 +23,8 @@
 					<td><div>{{title}}</div></td>
 					<td><div>{{content}}</div></td>
 					<td><div>{{category}}</div></td>
-					<td><span style="font-size:14px;" id="look" jump="/detail_article/{{id}}">查看</span>&nbsp;&nbsp;
-					<span style="font-size:14px;" id="edit" jump="/edit_article/{{id}}">编辑</span></td>
+					<td><span style="font-size:14px;" id="look" jump="/article/detail/{{id}}">查看</span>&nbsp;&nbsp;
+					<span style="font-size:14px;" id="edit" jump="/article/edit/{{id}}">编辑</span></td>
 				</tr>
 			{{/articles}}
 		</table>
@@ -57,7 +57,7 @@ $(function(){
 
 	function getData(page) {
 		$.ajax( {  
-			url:'/get_article_action',
+			url:'/article/look',
 			data:{"page" : page},  
 			type:'get',  
 			dataType:'json',  
@@ -72,8 +72,8 @@ $(function(){
 					'<td><div>'+v.title+'</div></td>' +
 					'<td><div>'+v.content+'</div></td>' +
 					'<td><div>'+v.category+'</div></td>' +
-					'<td><span style="font-size:14px;" id="look" jump="/detail_article/'+v.id+'">查看</span>&nbsp;&nbsp' +
-					'<span style="font-size:14px;" id="edit" jump="/edit_article/'+v.id+'">编辑</span></td>' +
+					'<td><span style="font-size:14px;" id="look" jump="/article/detail/'+v.id+'">查看</span>&nbsp;&nbsp' +
+					'<span style="font-size:14px;" id="edit" jump="/article/edit/'+v.id+'">编辑</span></td>' +
 					'</tr>'
 					
 					$("#look_container table").append(html)

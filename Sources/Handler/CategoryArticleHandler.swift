@@ -13,18 +13,12 @@ import MongoDB
 import DataBase
 import Model
 
-public class CategoryArticleHandler {
+public struct CategoryArticleHandler {
 
-    public init() {}
     
-    public func category() -> RequestHandler  {
-        return { request, response in
-            
-            let db = CategoryArticleModel()
-            response.appendBody(string: db.find())
-            
-            response.completed()
-        }
+    public static func category(req: HTTPRequest, res: HTTPResponse) -> String {
+        let db = CategoryArticleModel()
+        return db.find()
     }
     
 }

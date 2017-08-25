@@ -11,7 +11,7 @@
 		<p id="delete_btn">批量删除</p>
 	</div>
 	<div id="look_container">
-		<input type="hidden" id="article_total" value="{{total}}" jump="/look_article/{{page}}" />
+		<input type="hidden" id="article_total" value="{{total}}" jump="/article/look/{{page}}" />
 		<table>
 			<tr>
 				<th style="width: 3%"><input id="all_delete_select" class="delete_select" type="checkbox"></input></th>
@@ -28,7 +28,7 @@
 					<td><div>{{title}}</div></td>
 					<td><div>{{content}}</div></td>
 					<td><div>{{category}}</div></td>
-					<td><span style="font-size:14px;" id="look" jump="/detail_article/{{id}}">查看</span></td>
+					<td><span style="font-size:14px;" id="look" jump="/article/detail/{{id}}">查看</span></td>
 				</tr>
 			{{/articles}}
 		</table>
@@ -61,7 +61,7 @@ $(function(){
 
 	function getData(page) {
 		$.ajax( {  
-			url:'/get_article_action',
+			url:'/article/look',
 			data:{"page" : page},  
 			type:'get',  
 			dataType:'json',  
@@ -76,7 +76,7 @@ $(function(){
 					'<td><div>'+v.title+'</div></td>' +
 					'<td><div>'+v.content+'</div></td>' +
 					'<td><div>'+v.category+'</div></td>' +
-					'<td><span style="font-size:14px;" id="look" jump="/detail_article/'+v.id+'">查看</span>' +
+					'<td><span style="font-size:14px;" id="look" jump="/article/detail/'+v.id+'">查看</span>' +
 					'</tr>'
 					$("#look_container table").append(html)
 				})
@@ -107,14 +107,14 @@ $(function(){
 		console.log(datas)
 
 		$.ajax( {  
-			url:'/delete_article_action',
+			url:'/article/delete',
 			data:{"deletes":datas},  
 			type:'post',  
 			dataType:'json',  
 			success:function(data) {
 				if (data.result == 'success') {
 					alert('删除成功')
-					$("#index_content").load("/delete_article");
+					$("#index_content").load("/article/delete");
 				} else {
 					alert('删除失败')
 				}

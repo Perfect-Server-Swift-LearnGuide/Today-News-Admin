@@ -15,19 +15,16 @@ import Model
 
 public struct LookArticleHandler: MustachePageHandler {
     
-    public func getArticle()  -> RequestHandler {
-        return { request, response in
-            
-            let db = LookArticleModel()
-            var requestPage = 1
-            if let page = request.param(name: "page") {
-                requestPage = Int(page)!
-            }
-            
-            response.appendBody(string: db.articles(page: requestPage))
-            response.completed()
+    public static func look(req: HTTPRequest, res: HTTPResponse) -> String {
+
+        let db = LookArticleModel()
+        var requestPage = 1
+        if let page = req.param(name: "page") {
+            requestPage = Int(page)!
         }
         
+        return db.articles(page: requestPage)
+
     }
     
     public func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {

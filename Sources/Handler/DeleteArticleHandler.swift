@@ -16,19 +16,15 @@ import Model
 public struct DeleteArticleHandler: MustachePageHandler {
     
     /// DeleteArticle
-    public func deleteArticle() -> RequestHandler {
-        return { request, response in
-            
-            var data = [String]()
-            for param in request.postParams {
-                data.append(param.1)
-            }
-            let db = DeleteArticleModel()
-            response.appendBody(string: db.deletes(data))
-            
-            response.completed()
+    public static  func delete(req: HTTPRequest, res: HTTPResponse) -> String {
+  
+        var data = [String]()
+        for param in req.postParams {
+            data.append(param.1)
         }
-        
+        let db = DeleteArticleModel()
+        return db.deletes(data)
+
     }
     
     public func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {

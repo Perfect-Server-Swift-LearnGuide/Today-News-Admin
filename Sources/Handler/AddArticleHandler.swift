@@ -16,12 +16,10 @@ import Model
 public struct AddArticleHandler: MustachePageHandler {
     
     /// AddArticle
-    public func addArticle() -> RequestHandler {
-        return { request, response in
-
+    public static func add(req: HTTPRequest, res: HTTPResponse) -> String {
 
             var json = ""
-            for param in request.params() {
+            for param in req.params() {
                 json = param.0
             }
             let datas = try! json.jsonDecode() as! [[String : Any]]
@@ -42,11 +40,8 @@ public struct AddArticleHandler: MustachePageHandler {
             }
             params["createtime"] = try! formatDate(getNow(), format: "%Y/%m/%d %I:%M:%S")
             let db = AddArticleModel()
-            response.appendBody(string: db.add(data: params))
-            
-            response.completed()
-        }
-
+            return db.add(data: params)
+        
     }
     
     /// Mustache handler

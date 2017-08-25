@@ -135,7 +135,7 @@ $(function(){
 
 	$("#upload_img_action").on('click',function(){
 		$.ajax({  
-			url:'/article_thumbnail_upload_action',  
+			url:'/article/upload',  
 			type:'post',  
 			dataType:'json',
 			data:img_upload_formdata,
@@ -159,7 +159,7 @@ $(function(){
 
 	// 请求分类
 	$.ajax({  
-			url:'/category_article_action',  
+			url:'/article/category',  
 			type:'get',  
 			dataType:'json',  
 			success:function(res) {
@@ -201,7 +201,7 @@ $(function(){
 		 console.log(JSON.stringify(datas))
 		//  return false
 		$.ajax( {  
-			url:'/add_article_action',
+			url:'/article/add',
 			data:JSON.stringify(datas),  
 			type:'post',  
 			dataType:'json',  

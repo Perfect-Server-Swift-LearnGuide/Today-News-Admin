@@ -10,21 +10,42 @@
 public enum HandlerType {
     
     /// 首页
-    case index
+    enum Index:String {
+        
+        /// 首页
+        case index
+    }
     
-    /// 添加文章
-    case add_article
     
-    /// 删除文章
-    case delete_article
+    /// 文章
+    enum Article:String {
+        
+        /// 查看
+        case look
+        
+        /// 详情
+        case detail
+        
+        /// 编辑
+        case edit
+        
+        /// 删除
+        case delete
+        
+        /// 添加
+        case add
+        
+        /// 分类
+        case category
+        
+        /// 上传
+        case upload
+        
+    }
     
-    /// 查看文章
-    case look_article
     
-    /// 文章详情
-    case detail_article
+    /// 上传文章缩略图
+    case article__thumbnail_upload
     
-    /// 编辑文章
-    case edit_article
     
 }

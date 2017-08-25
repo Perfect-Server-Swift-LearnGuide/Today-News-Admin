@@ -14,13 +14,17 @@ import MongoDB
 import Model
 
 public struct DetailArticleHandler: MustachePageHandler {
+
+    public var id: String
+    
+    init(id: String) {
+        self.id = id
+    }
     
     public func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
         var values = MustacheEvaluationContext.MapType()
-
-        let request = contxt.webRequest
-        let id = request.urlVariables["id"] ?? ""
-        DetailArticleModel().find(id: id, values: &values)
+        
+        DetailArticleModel().find(id: self.id, values: &values)
         
         contxt.extendValues(with: values)
         do {
