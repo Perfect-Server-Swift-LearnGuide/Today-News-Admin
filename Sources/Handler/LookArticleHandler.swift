@@ -27,6 +27,7 @@ public struct LookArticleHandler: MustachePageHandler {
 
     }
     
+    /// Mustache handler
     public func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
         var values = MustacheEvaluationContext.MapType()
         

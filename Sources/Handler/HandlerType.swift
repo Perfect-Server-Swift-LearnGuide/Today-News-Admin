@@ -44,6 +44,13 @@ public enum HandlerType {
     }
     
     
+    /// 静态文件
+    enum StaticFile:String {
+        
+        case js
+        
+    }
+    
     /// 上传文章缩略图
     case article__thumbnail_upload
     

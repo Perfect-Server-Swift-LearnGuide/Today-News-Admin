@@ -16,7 +16,7 @@ public class DetailArticleModel {
         
     }
     
-    public func find(id: String, values: inout [String:Any]) {
+    public func find(id: String, values:  inout [String:Any]) {
         
         let db = DB(db: "today_news").collection(name: "article")
         let collection: MongoCollection? = db.collection

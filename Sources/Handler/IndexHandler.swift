@@ -12,6 +12,7 @@ import PerfectMustache
 
 public struct IndexHandler: MustachePageHandler {
     
+    /// Mustache handler
     public func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
         var values = MustacheEvaluationContext.MapType()
         values["values"] = ""

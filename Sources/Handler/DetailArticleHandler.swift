@@ -21,6 +21,7 @@ public struct DetailArticleHandler: MustachePageHandler {
         self.id = id
     }
     
+    /// Mustache handler
     public func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
         var values = MustacheEvaluationContext.MapType()
         

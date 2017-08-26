@@ -15,7 +15,7 @@ import Model
 
 public struct CategoryArticleHandler {
 
-    
+    /// 文章分类
     public static func category(req: HTTPRequest, res: HTTPResponse) -> String {
         let db = CategoryArticleModel()
         return db.find()

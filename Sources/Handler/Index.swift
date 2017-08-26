@@ -32,12 +32,15 @@ public struct Index {
             }
             
             if !isParams {
-                mustacheRequest(
-                    request: req,
-                    response: res,
-                    handler: handler!,
-                    templatePath: req.documentRoot +  "/\(action).mustache"
-                )
+                if let hand = handler {
+                    mustacheRequest(
+                        request: req,
+                        response: res,
+                        handler: hand,
+                        templatePath: req.documentRoot +  "/\(action).mustache"
+                    )
+                }
+
             }
             
             res.completed()
