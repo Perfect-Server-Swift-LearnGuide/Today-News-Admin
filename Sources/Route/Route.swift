@@ -33,7 +33,6 @@ public struct Route {
         routes.add(method: .get, uri: "/article/{action}/**", handler: article)
         routes.add(method: .post, uri: "/article/{action}/**", handler: article)
         routes.add(method: .get, uris: ["/{action}", "/"], handler: index)
-        routes.add(method: .get, uri: "/upload_files", handler: imageHandler())
         routes.add(method: .get, uri: "/js/**", handler: staticFile)
         
         /// 注册到服务器主路由表上
@@ -43,15 +42,7 @@ public struct Route {
     
     
     // MARK: - private method
-    
-    /// generate requestHandler
-    private func imageHandler() -> RequestHandler {
-        return { request, response in
-            print(request.header(HTTPRequestHeader.Name.contentType)!)
-            response.setHeader(.contentType, value: request.header(HTTPRequestHeader.Name.contentType)!)
-            response.completed()
-        }
-    }
+
     
 }
 
