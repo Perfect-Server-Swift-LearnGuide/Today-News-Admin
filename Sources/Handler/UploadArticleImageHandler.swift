@@ -8,6 +8,7 @@
 
 import PerfectHTTP
 import PerfectLib
+import Config
 
 public struct UploadArticleImageHandler  {
     
@@ -21,7 +22,7 @@ public struct UploadArticleImageHandler  {
         if let uploads = req.postFileUploads , uploads.count > 0 {
             
             // 创建路径用于存储已上传文件
-            let fileDir = Dir(Dir.workingDir.path + "/webroot/upload_files")
+            let fileDir = Dir(Dir.workingDir.path + req.documentRoot + "/\(app["upload"] as! String)/")
             do {
                 try fileDir.create()
             } catch {
@@ -39,7 +40,7 @@ public struct UploadArticleImageHandler  {
                     
                     do {
                         let _ = try thisFile.moveTo(path: fileDir.path + path, overWrite: true)
-                        imgs.append(["url" : "../upload_files/" + path])
+                        imgs.append(["url" : "./\(app["upload"] as! String)/" + path])
                     } catch {
                         print(error)
                     }

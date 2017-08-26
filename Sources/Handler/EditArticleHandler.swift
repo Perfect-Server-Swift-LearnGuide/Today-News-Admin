@@ -39,17 +39,7 @@ public struct EditArticleHandler: MustachePageHandler {
         var params = [String : Any]()
         for data in datas {
             if let key = data["name"] as? String {
-                
-                if key.contains(string: "thumbnails") {
-                    var images = data["value"] as! [String]
-        
-                    images = images.map({ (image)  in
-                        image.stringByReplacing(string: "..", withString: "http://127.0.0.1:8282")
-                    })
-                    params[key] = images
-                } else {
-                    params[key] = data["value"] ?? ""
-                }
+                params[key] = data["value"] ?? ""
             }
         }
         params["createtime"] = try! formatDate(getNow(), format: "%Y/%m/%d %I:%M:%S")

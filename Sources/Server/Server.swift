@@ -10,6 +10,7 @@ import PerfectLib
 import PerfectHTTP
 import PerfectHTTPServer
 import Route
+import Config
 
 struct ResponseFilter: HTTPResponseFilter {
     func filterHeaders(response: HTTPResponse, callback: (HTTPResponseFilterResult) -> ()) {
@@ -36,7 +37,7 @@ public struct Server {
         server.setResponseFilters(responseFilters)
         
         /// 设置文档根目录
-        server.documentRoot = "./webroot"
+        server.documentRoot = app["hostroot"] as! String
         
         /// 创建路由
         let routes = Route().routes
@@ -45,7 +46,7 @@ public struct Server {
         server.addRoutes(routes)
         
         /// 监听端口
-        server.serverPort = 8282
+        server.serverPort = UInt16(app["hostport"] as! Int)
 
     }
 

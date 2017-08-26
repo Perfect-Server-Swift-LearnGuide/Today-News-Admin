@@ -9,6 +9,7 @@
 import DataBase
 import MongoDB
 import PerfectLib
+import Config
 
 public class DetailArticleModel {
 
@@ -21,7 +22,6 @@ public class DetailArticleModel {
         let db = DB(db: "today_news").collection(name: "article")
         let collection: MongoCollection? = db.collection
         
-        /// 获取该集合下所有的信息
         let bson = BSON()
         bson.append(key: "_id", oid: BSON.OID(id))
         let cursor = collection?.find(query: bson)
@@ -44,11 +44,7 @@ public class DetailArticleModel {
             var thumbnails = [[String : String]]()
             if let images = data["thumbnails"] as? [String] {
                 for image in images {
-                    var id = image.replacingOccurrences(of: "http://127.0.0.1:8282/upload_files/article_thumbnail", with: "")
-                    id = id.components(separatedBy: ".").first!
-                    thumbnails.append(["imgUrl" : image.replacingOccurrences(of: "http://127.0.0.1:8282", with: ".."),
-                                       "id" : id])
-                    print(image.replacingOccurrences(of: "http://127.0.0.1:8282", with: ".."))
+                    thumbnails.append(["imgUrl" : image])
                 }
             }
             values["thumbnails"] = thumbnails

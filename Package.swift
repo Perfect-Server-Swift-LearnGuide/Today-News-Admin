@@ -8,9 +8,9 @@ let package = Package(
         Target(name: "Common", dependencies: []),
         Target(name: "Config", dependencies: []),
         Target(name: "DataBase", dependencies: ["Config"]),
-        Target(name: "Model", dependencies: ["DataBase","Common"]),
-        Target(name: "Server", dependencies: ["Route", "DataBase"]),
-        Target(name: "Handler", dependencies: ["Common", "DataBase","Model"]),
+        Target(name: "Model", dependencies: ["DataBase","Common","Config"]),
+        Target(name: "Server", dependencies: ["Route", "DataBase","Config"]),
+        Target(name: "Handler", dependencies: ["Common", "DataBase","Model","Config"]),
         Target(name: "Route", dependencies: ["Handler", "Common", "DataBase"])
     ],
 	dependencies: [

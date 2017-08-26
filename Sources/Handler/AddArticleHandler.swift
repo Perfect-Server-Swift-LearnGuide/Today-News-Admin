@@ -24,21 +24,14 @@ public struct AddArticleHandler: MustachePageHandler {
             }
             let datas = try! json.jsonDecode() as! [[String : Any]]
             var params = [String : Any]()
+
             for data in datas {
                 if let key = data["name"] as? String {
-       
-                    if key.contains(string: "thumbnails") {
-                        var images = data["value"] as! [String]
-                        images = images.map({ (image)  in
-                            image.stringByReplacing(string: "..", withString: "127.0.0.1:8282")
-                        })
-                        params[key] = images
-                    } else {
-                        params[key] = data["value"] ?? ""
-                    }
+                    params[key] = data["value"] ?? ""
                 }
             }
             params["createtime"] = try! formatDate(getNow(), format: "%Y/%m/%d %I:%M:%S")
+        
             let db = AddArticleModel()
             return db.add(data: params)
         

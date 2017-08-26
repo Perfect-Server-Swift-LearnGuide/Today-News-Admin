@@ -38,9 +38,7 @@
 
 <script>
 $(function(){
-	var page = parseInt($("#article_total").attr("value")) / 6
-	console.log(page)
-	// console.log(parseInt($("#article_total").val("value"))
+	var page = Math.ceil(parseInt($("#article_total").attr("value")) / 6)
 	laypage({
 		cont: 'page', //容器。值支持id名、原生dom对象，jquery对象,
 		pages: page, //总页数
