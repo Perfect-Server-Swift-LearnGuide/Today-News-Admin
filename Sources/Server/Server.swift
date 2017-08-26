@@ -12,15 +12,29 @@ import PerfectHTTPServer
 import Route
 import Config
 
-struct ResponseFilter: HTTPResponseFilter {
-    func filterHeaders(response: HTTPResponse, callback: (HTTPResponseFilterResult) -> ()) {
-        /// 设置响应头
-        response.addHeader(.contentType, value: "text/html")
-        callback(.done)
+
+struct RequestFilter: HTTPRequestFilter {
+    
+    func filter(request: HTTPRequest, response: HTTPResponse, callback: (HTTPRequestFilterResult) -> ()) {
+       
+        if  let accept =  request.header(HTTPRequestHeader.Name.accept) {
+            if accept.contains(string: "text/html") {
+                response.setHeader(.contentType, value: "text/html")
+            } else if accept.contains(string: "text/css") {
+                response.setHeader(.contentType, value: "text/css")
+            } else if accept.contains(string: "javascript") {
+                response.setHeader(.contentType, value: "text/javascript")
+            } else if accept.contains(string: "json") {
+                response.setHeader(.contentType, value: "application/json")
+            }
+        } else {
+            response.setHeader(.contentType, value: "text/html")
+        }
+        
+
+        callback(.execute(request, response))
     }
-    func filterBody(response: HTTPResponse, callback: (HTTPResponseFilterResult) -> ()) {
-        callback(.done)
-    }
+    
 }
 
 public struct Server {
@@ -29,12 +43,12 @@ public struct Server {
     
     public init() {
     
-        let responseFilters: [(HTTPResponseFilter, HTTPFilterPriority)] = [
-            (ResponseFilter(), HTTPFilterPriority.high)
+        let responseFilters: [(HTTPRequestFilter, HTTPFilterPriority)] = [
+            (RequestFilter(), HTTPFilterPriority.high)
         ]
         
-        /// t添加响应过滤器
-        server.setResponseFilters(responseFilters)
+        /// 添加过滤器
+        server.setRequestFilters(responseFilters)
         
         /// 设置文档根目录
         server.documentRoot = app["hostroot"] as! String

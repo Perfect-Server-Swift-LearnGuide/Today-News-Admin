@@ -15,6 +15,7 @@ public struct Index {
     public  static func index()  -> RequestHandler {
         return { req, res in
             
+            
             let isParams = req.params().count > 0
             var action = req.pathComponents.last ?? "index"
             action = action == "/" ? "index" : action
