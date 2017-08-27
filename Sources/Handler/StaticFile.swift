@@ -9,6 +9,7 @@
 import PerfectLib
 import PerfectHTTP
 import PerfectMustache
+import Common
 
 public struct StaticFile {
     
@@ -18,7 +19,7 @@ public struct StaticFile {
             switch type {
                 
             /// js
-            case HandlerType.StaticFile.js.rawValue:
+            case Server.Route.StaticFile.js.rawValue:
                 
                 let handler = StaticFileHandler(documentRoot: req.documentRoot)
                 handler.handleRequest(request: req, response: res)

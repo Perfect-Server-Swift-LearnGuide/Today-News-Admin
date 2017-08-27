@@ -12,6 +12,7 @@ import PerfectMustache
 import DataBase
 import MongoDB
 import Model
+import Common
 
 public struct Article {
     
@@ -26,7 +27,7 @@ public struct Article {
             switch action {
                 
             /// 查看
-            case HandlerType.Article.look.rawValue:
+            case Server.Route.Article.look.rawValue:
                 
                 handler = LookArticleHandler()
                 if isParams {
@@ -34,12 +35,12 @@ public struct Article {
                 }
             
             /// 详情
-            case HandlerType.Article.detail.rawValue:
+            case Server.Route.Article.detail.rawValue:
                 
                 handler = DetailArticleHandler(id:req.pathComponents.last ?? "")
                 
             /// 编辑
-            case HandlerType.Article.edit.rawValue:
+            case Server.Route.Article.edit.rawValue:
                 
                 handler = EditArticleHandler(id:req.pathComponents.last ?? "")
                 if isParams {
@@ -47,7 +48,7 @@ public struct Article {
                 }
             
             /// 删除
-            case HandlerType.Article.delete.rawValue:
+            case Server.Route.Article.delete.rawValue:
                 
                 handler = DeleteArticleHandler()
                 if isParams {
@@ -55,7 +56,7 @@ public struct Article {
                 }
             
             /// 添加
-            case HandlerType.Article.add.rawValue:
+            case Server.Route.Article.add.rawValue:
                 
                 handler = AddArticleHandler()
                 if isParams {
@@ -63,13 +64,13 @@ public struct Article {
                 }
             
             /// 分类
-            case HandlerType.Article.category.rawValue:
+            case Server.Route.Article.category.rawValue:
         
                 isParams = true
                 res.appendBody(string: CategoryArticleHandler.category(req: req, res: res))
                 
             /// 上传
-            case HandlerType.Article.upload.rawValue:
+            case Server.Route.Article.upload.rawValue:
                 
                 isParams = true
                 res.appendBody(string: UploadArticleImageHandler.upload(req: req, res: res))

@@ -9,6 +9,7 @@
 import PerfectLib
 import PerfectHTTP
 import PerfectMustache
+import Common
 
 public struct Index {
     
@@ -24,7 +25,7 @@ public struct Index {
             switch action {
                 
                 /// 首页
-                case HandlerType.Index.index.rawValue:
+                case Server.Route.Index.index.rawValue:
                 
                 handler = IndexHandler()
 
