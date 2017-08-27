@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_848"
+               BlueprintIdentifier = "OBJ_849"
                BuildableName = "PerfectLib.framework"
                BlueprintName = "PerfectLib"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_864"
+               BlueprintIdentifier = "OBJ_865"
                BuildableName = "PerfectThread.framework"
                BlueprintName = "PerfectThread"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_873"
+               BlueprintIdentifier = "OBJ_874"
                BuildableName = "COpenSSL.framework"
                BlueprintName = "COpenSSL"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1561"
+               BlueprintIdentifier = "OBJ_1562"
                BuildableName = "PerfectCrypto.framework"
                BlueprintName = "PerfectCrypto"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1580"
+               BlueprintIdentifier = "OBJ_1581"
                BuildableName = "PerfectNet.framework"
                BlueprintName = "PerfectNet"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -84,7 +84,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1601"
+               BlueprintIdentifier = "OBJ_1602"
                BuildableName = "PerfectHTTP.framework"
                BlueprintName = "PerfectHTTP"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -98,7 +98,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1626"
+               BlueprintIdentifier = "OBJ_1627"
                BuildableName = "PerfectCHTTPParser.framework"
                BlueprintName = "PerfectCHTTPParser"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -112,7 +112,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1646"
+               BlueprintIdentifier = "OBJ_1647"
                BuildableName = "PerfectCZlib.framework"
                BlueprintName = "PerfectCZlib"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -126,7 +126,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1680"
+               BlueprintIdentifier = "OBJ_1681"
                BuildableName = "PerfectHTTPServer.framework"
                BlueprintName = "PerfectHTTPServer"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -140,7 +140,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1720"
+               BlueprintIdentifier = "OBJ_1721"
                BuildableName = "MongoDB.framework"
                BlueprintName = "MongoDB"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -154,7 +154,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1736"
+               BlueprintIdentifier = "OBJ_1737"
                BuildableName = "PerfectMustache.framework"
                BlueprintName = "PerfectMustache"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -168,7 +168,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1755"
+               BlueprintIdentifier = "OBJ_1756"
                BuildableName = "Application"
                BlueprintName = "Application"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -182,7 +182,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1793"
+               BlueprintIdentifier = "OBJ_1794"
                BuildableName = "Common.framework"
                BlueprintName = "Common"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -196,7 +196,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1795"
+               BlueprintIdentifier = "OBJ_1796"
                BuildableName = "Config.framework"
                BlueprintName = "Config"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -210,7 +210,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1797"
+               BlueprintIdentifier = "OBJ_1798"
                BuildableName = "DataBase.framework"
                BlueprintName = "DataBase"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -224,7 +224,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1801"
+               BlueprintIdentifier = "OBJ_1802"
                BuildableName = "Handler.framework"
                BlueprintName = "Handler"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -238,7 +238,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1799"
+               BlueprintIdentifier = "OBJ_1800"
                BuildableName = "Model.framework"
                BlueprintName = "Model"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -252,7 +252,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1803"
+               BlueprintIdentifier = "OBJ_1804"
                BuildableName = "Route.framework"
                BlueprintName = "Route"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -266,7 +266,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1805"
+               BlueprintIdentifier = "OBJ_1806"
                BuildableName = "Server.framework"
                BlueprintName = "Server"
                ReferencedContainer = "container:Today-News-Admin.xcodeproj">
@@ -297,7 +297,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_848"
+            BlueprintIdentifier = "OBJ_849"
             BuildableName = "PerfectLib.framework"
             BlueprintName = "PerfectLib"
             ReferencedContainer = "container:Today-News-Admin.xcodeproj">
