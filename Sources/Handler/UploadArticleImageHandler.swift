@@ -22,7 +22,7 @@ public struct UploadArticleImageHandler  {
         if let uploads = req.postFileUploads , uploads.count > 0 {
             
             // 创建路径用于存储已上传文件
-            let fileDir = Dir(Dir.workingDir.path + req.documentRoot + "/\(app["upload"] as! String)/")
+            let fileDir = Dir(Dir.workingDir.path + req.documentRoot + "/\(app.upload)/")
             do {
                 try fileDir.create()
             } catch {
@@ -40,7 +40,7 @@ public struct UploadArticleImageHandler  {
                     
                     do {
                         let _ = try thisFile.moveTo(path: fileDir.path + path, overWrite: true)
-                        imgs.append(["url" : "./\(app["upload"] as! String)/" + path])
+                        imgs.append(["url" : "./\(app.upload)/" + path])
                     } catch {
                         print(error)
                     }

@@ -9,7 +9,6 @@
 import DataBase
 import MongoDB
 import PerfectLib
-import Config
 
 public class DetailArticleModel {
 

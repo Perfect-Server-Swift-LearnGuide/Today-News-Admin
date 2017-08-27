@@ -1,24 +1,24 @@
-public let database = [
+public struct database {
 
     
     
     /// 数据库服务器地址
-    "hostname"                      :                   "182.92.83.11",
+    public static let hostname                        =                  "182.92.83.11"
     
     /// 用户名
-    "username"                      :                   "",
+    public static let username                        =                    ""
     
     /// 密码
-    "password"                       :                   "",
+    public static let password                         =                   ""
     
     /// 数据库名            
-    "database"                      :                    "",
+    public static let database                        =                    ""
     
     /// 数据库表前缀
-    "dbprefix"                         :                     "tn_",
+    public static let dbprefix                           =                     "tn_"
     
     /// 数据库端口号
-    "dbport"                            :                    "27017"
+    public static let dbport                              =                    "27017"
 
 
-]
+}
