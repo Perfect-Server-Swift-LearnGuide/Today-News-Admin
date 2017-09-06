@@ -3,7 +3,7 @@ public struct database {
     
     
     /// 数据库服务器地址
-    public static let hostname                        =                  "182.92.83.11"
+    public static let hostname                        =                  ""
     
     /// 用户名
     public static let username                        =                    ""
@@ -18,7 +18,7 @@ public struct database {
     public static let dbprefix                           =                     "tn_"
     
     /// 数据库端口号
-    public static let dbport                              =                    "27017"
+    public static let dbport                              =                    ""
 
 
 }
