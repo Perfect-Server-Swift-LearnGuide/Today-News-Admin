@@ -9,7 +9,6 @@
 import PerfectLib
 import PerfectMongoDB
 import PerfectHTTP
-import PerfectMustache
 import Config
 
 public class DB {
@@ -26,10 +25,17 @@ public class DB {
     public init(db: String) {
         
         /// 通过默认的端口连接MongoDB
-        self.client = try! MongoClient(uri: "mongodb://" + database.hostname + ":" + database.dbport)
+        
+        self.client = try! MongoClient(uri: "mongodb://" +
+            database.username  + ":" +
+            database.password + "@" +
+            database.hostname + ":" +
+            database.dbport + "/" +
+            db)
         
         /// DataBase
         self.db = self.client.getDatabase(name: db)
+        
     }
     
     /// init collection
@@ -47,4 +53,16 @@ public class DB {
         }
     }
     
+    /// database connect fail
+    fileprivate func outputFail(client: MongoClient) {
+        let status = client.serverStatus()
+        switch status {
+        case .error(let domain, let code, let message):
+            print( "Error: \(domain) \(code) \(message)")
+        case .replyDoc(_):
+            print(true)
+        default:
+            print("Strange reply type \(status)")
+        }
+    }
 }
