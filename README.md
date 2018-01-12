@@ -15,5 +15,5 @@ Today-News-Admin
     </a>
 </p>
 
-![image](https://github.com/Perfect-Server-Swift-LearnGuide/Today-News-Admin/blob/master/i.png)
+
 
