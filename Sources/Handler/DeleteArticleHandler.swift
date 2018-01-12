@@ -10,7 +10,7 @@ import PerfectLib
 import PerfectHTTP
 import PerfectMustache
 import DataBase
-import MongoDB
+import PerfectMongoDB
 import Model
 
 public struct DeleteArticleHandler: MustachePageHandler {

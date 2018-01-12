@@ -7,7 +7,7 @@
 //
 
 import PerfectLib
-import MongoDB
+import PerfectMongoDB
 import PerfectHTTP
 import PerfectMustache
 import Config
